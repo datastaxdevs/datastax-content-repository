@@ -1,5 +1,3 @@
-import { Sidebar } from 'react-pro-sidebar';
-
 const LeftBar = (props) => {
   props.tagset && props.tagset.sort((a, b) => parseFloat(b.count) - parseFloat(a.count));
   

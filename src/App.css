@@ -3858,7 +3858,7 @@ a.badge-warning-v2.focus, a.badge-warning-v2:focus {
 }
 
 .custom-control {
-    color-adjust: exact;
+    print-color-adjust: exact;
     display: block;
     min-height: 1.5rem;
     padding-left: 1.5rem;

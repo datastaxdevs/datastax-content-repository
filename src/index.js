@@ -50,6 +50,7 @@ const App = () => {
     fetchStarters(filterlist)
     fetchHomeApps(filterlist)
     fetchData()
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters])
 
   function filteredTag(tagname) {
@@ -72,7 +73,7 @@ const App = () => {
   }
    
   const filterApps = (filterapps) => {
-    if (filters == []) {
+    if (filters === []) {
       return filterapps
     }
     let newapps = []
@@ -80,10 +81,9 @@ const App = () => {
     apploop:
     for (const app of filterapps){
       console.log(JSON.stringify(app))
-      tagloop:
       for (const tag of filters) {
           console.log("Checking app for" + tag)
-          if (app.tags.indexOf(tag) == -1) {
+          if (app.tags.indexOf(tag) === -1) {
             continue apploop
         }
       }
