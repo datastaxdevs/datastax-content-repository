@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
-    "build": "tailwind build src/css/tailwind.css -o dist/css/tailwind.css && react-scripts build",
+    "build": "tailwind build -i src/input.css -o output.css && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev": "netlify dev"

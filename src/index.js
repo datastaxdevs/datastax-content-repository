@@ -10,6 +10,7 @@ import "core-js/stable"
 import "regenerator-runtime/runtime"
 import './App.css'
 import './index.css'
+import './output.css'
 import axios from 'axios'
 
 
