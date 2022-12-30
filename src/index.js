@@ -19,12 +19,12 @@ const App = () => {
   const [filters, setFilters] = useState([]);
   const [starters, setStarters] = useState(null)
   const [workshops, setWorkshops] = useState(null)
-  const [apps, setApps] = useState(null)
+  const [home, setHome] = useState(null)
 
   const fetchHomeApps = async (filterlist) => {
-    const results = await axios.get('/.netlify/functions/getCategory?tag=apps')
-    console.log("APPS" + JSON.stringify(results.data[0].apps.apps))
-    setApps(filterApps(results.data[0].apps.apps))
+    const results = await axios.get('/.netlify/functions/getCategory?tag=all')
+    console.log("HOME" + JSON.stringify(results.data[0]))
+    setHome(filterApps(results.data[0].all.apps))
   }
 
   const fetchWorkshops = async (filterlist) => {
@@ -63,6 +63,9 @@ const App = () => {
     console.log("TAGNAME " + tagname)
 
     if (filters) {
+      if (tagname === "all") {
+        setFilters()
+      }
       if(filteredTag(tagname)){
         setFilters(filters.filter(item => item !== tagname))        
       } else {
@@ -78,7 +81,7 @@ const App = () => {
       return filterapps
     }
     let newapps = []
-    console.log("Processing " + JSON.stringify(apps))
+    console.log("Processing " + JSON.stringify(filterapps))
     apploop:
     for (const app of filterapps){
       console.log(JSON.stringify(app))
@@ -95,22 +98,21 @@ const App = () => {
   
   return (
     <>
-    <HashRouter>
-      <Header />
-      <div className="row">
-        <div className='col-2'>
-      <LeftBar filters={filters} onClick={handleFilters} tagset={tagset} filteredTag={filteredTag}/>
-      </div>
-      <div className='col-9'>
-         <Switch>
-            <Route path= "/workshops" render={(props) => <Workshops apps={workshops} filters={filters} onClick={handleFilters} filteredTag={filteredTag} {...props}/> }/>
-            <Route path= "/starters" render={(props) => <StarterApps apps={starters} filters={filters} onClick={handleFilters} filteredTag={filteredTag} {...props} /> }/>
-            <Route path= "/" render={(props) => <Home apps={apps} filters={filters} onClick={handleFilters} filteredTag={filteredTag} {...props} /> }/>
-          </Switch>
-          </div>
+      <HashRouter>
+        <Header />
+        <div className="row">
+          <div className='col-2'>
+        <LeftBar filters={filters} onClick={handleFilters} tagset={tagset} filteredTag={filteredTag}/>
+        </div>
+        <div className='col-9'>
+            <Switch>
+              <Route path= "/workshops" render={(props) => <Workshops apps={workshops} filters={filters} onClick={handleFilters} filteredTag={filteredTag} {...props}/> }/>
+              <Route path= "/starters" render={(props) => <StarterApps apps={starters} filters={filters} onClick={handleFilters} filteredTag={filteredTag} {...props} /> }/>
+              <Route path= "/" render={(props) => <Home apps={home} filters={filters} onClick={handleFilters} filteredTag={filteredTag} {...props} /> }/>
+            </Switch>
+            </div>
           </div>
      </HashRouter>
-     
   </>
 )}
 export default App

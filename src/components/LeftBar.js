@@ -2,9 +2,9 @@ const LeftBar = (props) => {
   props.tagset && props.tagset.sort((a, b) => parseFloat(b.count) - parseFloat(a.count));
   
   return (
-    <div class="container-fluid width=200px">
-        <div class="row">
-            <div class="col-3 side" id="green">
+    <div className="container-fluid width=200px">
+        <div className="row">
+            <div className="col-3 side" id="green">
             <div>
               <h3>Filters</h3>
             </div>

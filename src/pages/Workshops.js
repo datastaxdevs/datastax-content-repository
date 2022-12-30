@@ -2,26 +2,24 @@ import React from 'react'
 import Card from '../components/Card'
 
 const Workshops = (props) => {
-  //console.log("Workshops:" + JSON.stringify(props.apps))
-  return (
-    <>
-    
-    {props.apps && (
-      <div className='container'>
-        <div className="row row-cols-2">
-          {props.apps.map((application, index) => (
+  //console.log("HOME:" + JSON.stringify(props.apps))
+   return (
+    <div className="columns-3">
+    <ul className="grid grid-cols-1 gap-2 ">
+      {props.apps && (<span>
+        {props.apps.map((application, index) => (
             <Card
-              key={index}
-              application={application}
-              onClick={props.onClick}
-              filteredTag={props.filteredTag}
-              filters={props.filters}
-            />
-          ))}
-        </div>
-      </div>
-    )}
-    </>
+            key={index}
+            application={application}
+            onClick={props.onClick}
+            filteredTag={props.filteredTag}
+            filters={props.filters}
+            {...props} 
+          />
+        ))}
+        </span>)}
+    </ul>
+    </div>
   )
 }
 
