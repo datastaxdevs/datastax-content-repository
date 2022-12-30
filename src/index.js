@@ -63,16 +63,13 @@ const App = () => {
     console.log("TAGNAME " + tagname)
 
     if (filters) {
-      if (tagname === "all") {
-        setFilters()
-      }
       if(filteredTag(tagname)){
         setFilters(filters.filter(item => item !== tagname))        
       } else {
-       // console.log("Adding filter for" + tag.name)
+        console.log("Adding filter for" + tagname)
         setFilters( arr => [...arr, tagname]);
       }
-     //console.log(filters)
+     console.log(filters)
     }
   }
    
