@@ -23,25 +23,23 @@ const App = () => {
 
   const fetchHomeApps = async (filterlist) => {
     const results = await axios.get('/.netlify/functions/getCategory?tag=all')
-    console.log("HOME" + JSON.stringify(results.data[0]))
+    let newtaglist = [];
     setHome(filterApps(results.data[0].all.apps))
   }
 
   const fetchWorkshops = async (filterlist) => {
     const results = await axios.get('/.netlify/functions/getCategory?tag=workshop')
-    console.log("WORKSHOP RAW" + JSON.stringify(results.data))
-    console.log("WORKSHOP" + JSON.stringify(results.data[0].workshop.apps))
     setWorkshops(filterApps(results.data[0].workshop.apps))
   }
 
   const fetchStarters = async (filterlist) => {
-    const results = await axios.get('/.netlify/functions/getCategory?tag=starters')
-    setStarters(filterApps(results.data[0].starters.apps))
+    const results = await axios.get('/.netlify/functions/getCategory?tag=starter')
+    console.log(JSON.stringify(results))
+    setStarters(filterApps(results.data[0].starter.apps))
   }
 
   const fetchData = async () => {
     const results = await axios.get('/.netlify/functions/getTags')
-  
     setTags(Object.values(results.data))
   }
 
@@ -60,16 +58,13 @@ const App = () => {
 
   const handleFilters = (tagname, e) => {
     e.preventDefault();
-    console.log("TAGNAME " + tagname)
 
     if (filters) {
       if(filteredTag(tagname)){
         setFilters(filters.filter(item => item !== tagname))        
       } else {
-        console.log("Adding filter for" + tagname)
         setFilters( arr => [...arr, tagname]);
       }
-     console.log(filters)
     }
   }
    
@@ -78,12 +73,9 @@ const App = () => {
       return filterapps
     }
     let newapps = []
-    console.log("Processing " + JSON.stringify(filterapps))
     apploop:
     for (const app of filterapps){
-      console.log(JSON.stringify(app))
       for (const tag of filters) {
-          console.log("Checking app for" + tag)
           if (app.tags.indexOf(tag) === -1) {
             continue apploop
         }

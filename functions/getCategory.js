@@ -7,7 +7,6 @@ exports.handler = async (event, context) => {
   try {
     const res = await apps.find({ name: { $eq: tag } });
     const formattedTodos = Object.keys(res.data).map((item) => res.data[item]);
-    console.log(formattedTodos)
     return {
       statusCode: 200,
       body: JSON.stringify(formattedTodos),

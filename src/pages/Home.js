@@ -5,8 +5,8 @@ const Home = (props) => {
   //console.log("HOME:" + JSON.stringify(props.apps))
    return (
     <div className="columns-3">
-    <ul className="grid grid-cols-1 gap-2 ">
-      {props.apps && (<span>
+    <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
+      {props.apps && (<>
         {props.apps.map((application, index) => (
             <Card
             key={index}
@@ -17,7 +17,7 @@ const Home = (props) => {
             {...props} 
           />
         ))}
-        </span>)}
+        </>)}
     </ul>
     </div>
   )
