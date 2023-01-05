@@ -10,7 +10,7 @@ const navigation = [
 
 export default function Header() {
   return (
-    <header className="relative z-50 pb-11 lg:pt-11">
+    <header className="z-50 pb-11 lg:pt-11">
 
       <Container className="flex flex-wrap items-center justify-center sm:justify-between lg:flex-nowrap">
         <div className="ml-8 hidden space-x-8 lg:block">

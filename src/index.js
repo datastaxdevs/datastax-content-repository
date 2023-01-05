@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import { HashRouter, Route , Switch} from 'react-router-dom'
+import { HashRouter, Route, Switch } from 'react-router-dom'
 import Home from './pages/Home'
 import Workshops from './pages/Workshops'
 import Header from './components/Header'
@@ -49,7 +49,7 @@ const App = () => {
     fetchStarters(filterlist)
     fetchHomeApps(filterlist)
     fetchData()
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters])
 
   function filteredTag(tagname) {
@@ -60,50 +60,51 @@ const App = () => {
     e.preventDefault();
 
     if (filters) {
-      if(filteredTag(tagname)){
-        setFilters(filters.filter(item => item !== tagname))        
+      if (filteredTag(tagname)) {
+        setFilters(filters.filter(item => item !== tagname))
       } else {
-        setFilters( arr => [...arr, tagname]);
+        setFilters(arr => [...arr, tagname]);
       }
     }
   }
-   
+
   const filterApps = (filterapps) => {
     if (filters === []) {
       return filterapps
     }
     let newapps = []
     apploop:
-    for (const app of filterapps){
+    for (const app of filterapps) {
       for (const tag of filters) {
-          if (app.tags.indexOf(tag) === -1) {
-            continue apploop
+        if (app.tags.indexOf(tag) === -1) {
+          continue apploop
         }
       }
       newapps.push(app)
     }
     return newapps
   }
-  
+
   return (
     <>
       <HashRouter>
         <Header />
-        <div className="row">
-          <div className='col-2'>
-        <LeftBar filters={filters} onClick={handleFilters} tagset={tagset} filteredTag={filteredTag}/>
-        </div>
-        <div className='col-9'>
-            <Switch>
-              <Route path= "/workshops" render={(props) => <Workshops apps={workshops} filters={filters} onClick={handleFilters} filteredTag={filteredTag} {...props}/> }/>
-              <Route path= "/starters" render={(props) => <StarterApps apps={starters} filters={filters} onClick={handleFilters} filteredTag={filteredTag} {...props} /> }/>
-              <Route path= "/" render={(props) => <Home apps={home} filters={filters} onClick={handleFilters} filteredTag={filteredTag} {...props} /> }/>
-            </Switch>
-            </div>
+        <div name="wrapper" className="row">
+          <div name="Leftbar" className='col-3'>
+            <LeftBar filters={filters} onClick={handleFilters} tagset={tagset} filteredTag={filteredTag} />
           </div>
-     </HashRouter>
-  </>
-)}
+          <div name="gallery cards" className='col-9'>
+            <Switch>
+              <Route path="/workshops" render={(props) => <Workshops apps={workshops} filters={filters} onClick={handleFilters} filteredTag={filteredTag} {...props} />} />
+              <Route path="/starters" render={(props) => <StarterApps apps={starters} filters={filters} onClick={handleFilters} filteredTag={filteredTag} {...props} />} />
+              <Route path="/" render={(props) => <Home apps={home} filters={filters} onClick={handleFilters} filteredTag={filteredTag} {...props} />} />
+            </Switch>
+          </div>
+        </div>
+      </HashRouter>
+    </>
+  )
+}
 export default App
 
 ReactDOM.render(

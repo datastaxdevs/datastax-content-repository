@@ -4,9 +4,8 @@ import Card from '../components/Card'
 const Workshops = (props) => {
   //console.log("HOME:" + JSON.stringify(props.apps))
    return (
-    <div className="columns-3">
-    <ul className="grid grid-cols-1 gap-2 ">
-      {props.apps && (<span>
+      <div className="grid lg:grid-cols-3 gap-x-5 gap-y-5 md:grid-cols-2">
+      {props.apps && (<>
         {props.apps.map((application, index) => (
             <Card
             key={index}
@@ -17,8 +16,7 @@ const Workshops = (props) => {
             {...props} 
           />
         ))}
-        </span>)}
-    </ul>
+        </>)}
     </div>
   )
 }
