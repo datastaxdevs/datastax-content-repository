@@ -93,7 +93,7 @@ const App = () => {
       <HashRouter>
         <Header />
         <div name="wrapper" className="row">
-          <div name="Leftbar" className='col-3'>
+          <div name="Leftbar" className='col-1'>
             <LeftBar filters={filters} onClick={handleFilters} tagset={tagset} filteredTag={filteredTag} />
           </div>
           <div name="gallery cards" className='col-9'>
