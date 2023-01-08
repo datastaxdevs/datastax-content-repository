@@ -37,7 +37,6 @@ const App = () => {
 
   const fetchData = async () => {
     const allTags = await axios.get('/.netlify/functions/getAllTags')
-    console.log("ALLTAGS IN APP IS " + JSON.stringify(allTags.data, null, 4))
     let newtags = Object.values(allTags.data);
     newtags.sort((a, b) => b.count - a.count);
     setTags(Object.values(newtags))
@@ -58,6 +57,10 @@ const App = () => {
 
   const handleFilters = (tagname, e) => {
     e.preventDefault();
+    if (tagname === "all") {
+      setFilters([])
+      return;
+    }
 
     if (filters) {
       if (filteredTag(tagname)) {
