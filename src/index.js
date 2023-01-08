@@ -13,7 +13,6 @@ import './index.css'
 import './output.css'
 import axios from 'axios'
 
-
 const App = () => {
   const [tagset, setTags] = useState(null)
   const [filters, setFilters] = useState([]);
@@ -23,7 +22,6 @@ const App = () => {
 
   const fetchHomeApps = async (filterlist) => {
     const results = await axios.get('/.netlify/functions/getCategory?tag=all')
-    let newtaglist = [];
     setHome(filterApps(results.data[0].all.apps))
   }
 
@@ -33,14 +31,16 @@ const App = () => {
   }
 
   const fetchStarters = async (filterlist) => {
-    const results = await axios.get('/.netlify/functions/getCategory?tag=starter')
-    console.log(JSON.stringify(results))
-    setStarters(filterApps(results.data[0].starter.apps))
+    const results = await axios.get('/.netlify/functions/getCategory?tag=starters')
+    setStarters(filterApps(results.data[0].starters.apps))
   }
 
   const fetchData = async () => {
-    const results = await axios.get('/.netlify/functions/getTags')
-    setTags(Object.values(results.data))
+    const allTags = await axios.get('/.netlify/functions/getAllTags')
+    console.log("ALLTAGS IN APP IS " + JSON.stringify(allTags.data, null, 4))
+    let newtags = Object.values(allTags.data);
+    newtags.sort((a, b) => b.count - a.count);
+    setTags(Object.values(newtags))
   }
 
   useEffect(() => {

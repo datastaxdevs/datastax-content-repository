@@ -2,7 +2,7 @@ const { getCollection } = require("./utils/astraClient");
 
 exports.handler = async (event, context) => {
   const tag = event.queryStringParameters.tag
-  //const filter = event.queryStringParameters.filter
+  
   const apps = await getCollection();
   try {
     const res = await apps.find({ name: { $eq: tag } });
