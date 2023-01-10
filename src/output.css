@@ -648,8 +648,8 @@ video {
   margin-top: 4rem;
 }
 
-.-mr-1 {
-  margin-right: -0.25rem;
+.-mr-2 {
+  margin-right: -0.5rem;
 }
 
 .mr-1 {
@@ -688,8 +688,8 @@ video {
   height: 8rem;
 }
 
-.h-5 {
-  height: 1.25rem;
+.h-8 {
+  height: 2rem;
 }
 
 .h-6 {
@@ -987,10 +987,6 @@ video {
 
 .pl-0 {
   padding-left: 0px;
-}
-
-.pt-\[\.75\] {
-  padding-top: .75;
 }
 
 .pb-11 {
