@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.readmemd p h2 h1 em{
+    color: black;
+    line-height: 1.25rem !important;
+    text-align: left !important;
+}
+
+.readmemd img{
+    width: 200 !important;
+}
+
+
 .card-gallery--image {
     margin-bottom: 16px;
     object-fit: cover;
@@ -319,7 +331,7 @@
     filter:invert(56%) sepia(58%) saturate(3021%) hue-rotate(339deg) brightness(95%) contrast(93%)
 }
 
-.card-gallery__tag {
+.button-sm {
     border: 2px solid #f6f8fa;
     border-radius: 6px;
     display: inline-block;

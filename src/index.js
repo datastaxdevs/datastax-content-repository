@@ -16,6 +16,8 @@ import axios from 'axios'
 const App = () => {
   const [tagset, setTags] = useState(null)
   const [filters, setFilters] = useState([]);
+  const [samples, setSamples] = useState(null)
+  const [datatools, setDataTools] = useState(null)
   const [starters, setStarters] = useState(null)
   const [workshops, setWorkshops] = useState(null)
   const [home, setHome] = useState(null)
@@ -35,6 +37,17 @@ const App = () => {
     setStarters(filterApps(results.data[0].starters.apps))
   }
 
+  const fetchSamples = async (filterlist) => {
+    const results = await axios.get('/.netlify/functions/getCategory?tag=apps')
+    setSamples(filterApps(results.data[0].apps.apps))
+  }
+
+  const fetchDataTools = async (filterlist) => {
+    const results = await axios.get('/.netlify/functions/getCategory?tag=tools')
+    setDataTools(filterApps(results.data[0].tools.apps))
+  }
+
+
   const fetchData = async () => {
     const allTags = await axios.get('/.netlify/functions/getAllTags')
     let newtags = Object.values(allTags.data);
@@ -47,6 +60,9 @@ const App = () => {
     fetchWorkshops(filterlist)
     fetchStarters(filterlist)
     fetchHomeApps(filterlist)
+    fetchSamples(filterlist)
+    fetchDataTools(filterlist)
+    
     fetchData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters])
@@ -90,6 +106,7 @@ const App = () => {
 
   return (
     <>
+    
       <HashRouter>
         <Header />
         <div name="wrapper" className="row">

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Modal from './Modal'
 const Card = (props) => {
   let application = props.application
 
@@ -23,14 +23,14 @@ const Card = (props) => {
             <dd className="text-sm text-gray-500">
               {application?.tags?.map((tagname, index) => (
                 
-                <button key={index} className={props.filteredTag(tagname) ? 
-                  'inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-center text-xs font-bold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' : 
-                  'inline-flex items-center rounded border border-transparent bg-indigo-100 px-2.5 py-1.5 text-center text-xs font-bold text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'}
-                onClick=
+                <button key={index} className={props.filteredTag(tagname) ? 'btn btn-primary btn-sm' : 'btn btn-outline-primary btn-sm'}
+                  onClick=
                   {(e) => props.onClick(tagname, e)}
                 >{tagname}</button>
               ))}</dd>
-
+          <dd>
+            <Modal application={application} filteredTag={props.filteredTag}/>
+          </dd>
           </dl>
         </div>
         <div>
