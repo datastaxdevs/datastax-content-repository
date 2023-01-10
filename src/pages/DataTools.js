@@ -21,4 +21,4 @@ const DataTools = (props) => {
   )
 }
 
-export default Workshops
+export default DataTools

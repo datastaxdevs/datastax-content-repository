@@ -5,6 +5,8 @@ import Home from './pages/Home'
 import Workshops from './pages/Workshops'
 import Header from './components/Header'
 import StarterApps from './pages/StarterApps'
+import SampleApps from './pages/SampleApps'
+import DataTools from './pages/DataTools'
 import LeftBar from './components/LeftBar'
 import "core-js/stable"
 import "regenerator-runtime/runtime"
@@ -117,6 +119,8 @@ const App = () => {
             <Switch>
               <Route path="/workshops" render={(props) => <Workshops apps={workshops} filters={filters} onClick={handleFilters} filteredTag={filteredTag} {...props} />} />
               <Route path="/starters" render={(props) => <StarterApps apps={starters} filters={filters} onClick={handleFilters} filteredTag={filteredTag} {...props} />} />
+              <Route path="/datatools" render={(props) => <DataTools apps={datatools} filters={filters} onClick={handleFilters} filteredTag={filteredTag} {...props} />} />
+              <Route path="/samples" render={(props) => <SampleApps apps={samples} filters={filters} onClick={handleFilters} filteredTag={filteredTag} {...props} />} />
               <Route path="/" render={(props) => <Home apps={home} filters={filters} onClick={handleFilters} filteredTag={filteredTag} {...props} />} />
             </Switch>
           </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import Modal from './Modal'
+import DropDown from './DropDown'
 const Card = (props) => {
   let application = props.application
 
@@ -22,16 +23,18 @@ const Card = (props) => {
             <dt className="sr-only">Tags:</dt>
             <dd className="text-sm text-gray-500">
               {application?.tags?.map((tagname, index) => (
-                
+
                 <button key={index} className={props.filteredTag(tagname) ? 'btn btn-primary btn-sm' : 'btn btn-outline-primary btn-sm'}
                   onClick=
                   {(e) => props.onClick(tagname, e)}
                 >{tagname}</button>
               ))}</dd>
-          <dd>
-            <Modal application={application} filteredTag={props.filteredTag}/>
-          </dd>
+
           </dl>
+          <div class="row float-right">
+            <Modal application={application} filteredTag={props.filteredTag} />
+            <DropDown application={application} />
+          </div>
         </div>
         <div>
 

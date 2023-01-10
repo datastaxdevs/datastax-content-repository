@@ -6,30 +6,35 @@ const Modal = (props) => {
     const [showModal, setShowModal] = useState(false);
     const application = props.application;
 
+
     useEffect(() => {
         const close = (e) => {
-          if(e.keyCode === 27){
-            setShowModal(false)
-          }
+            if (e.keyCode === 27) {
+                setShowModal(false)
+            }
         }
         window.addEventListener('keydown', close)
-      return () => window.removeEventListener('keydown', close)
-    },[])
-    
+        return () => window.removeEventListener('keydown', close)
+    }, [])
+
     const cleanHTML = DOMPurify.sanitize(application.readme, {
         USE_PROFILES: { html: true },
     });
 
     return (
         <>
+        <div class="col-auto">
             <button
-                className="bg-blue-200 text-blue active:bg-blue-500 
-      font-bold px-6 mt-6 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                className="bg-slate-200 text-indigo-700 active:bg-sky-500 
+      font-bold px-6 mt-16 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                 type="button"
                 onClick={() => setShowModal(true)}
             >
                 Learn More
             </button>
+            </div>
+
+
             {showModal ? (
                 <>
                     <div className="flex flex-wrap justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bottom-20 top-20">
@@ -91,7 +96,7 @@ const Modal = (props) => {
                                                 </button>
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>

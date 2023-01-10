@@ -21,4 +21,4 @@ const SampleApps = (props) => {
   )
 }
 
-export default Workshops
+export default SampleApps
