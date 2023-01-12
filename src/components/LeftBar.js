@@ -22,8 +22,6 @@ const LeftBar = (props) => {
     }
   }
 
-  console.log(languages)
-
   return (
       <>
         {props.tagset && (

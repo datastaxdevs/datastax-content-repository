@@ -21,7 +21,6 @@ const DropDown = (props) => {
         }
     })
 
-    console.log(JSON.stringify(urls))
     return (
         <div className="col-auto">
         <Menu as="div" className="relative inline-block text-left leading-8">

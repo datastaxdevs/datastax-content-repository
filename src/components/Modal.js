@@ -1,11 +1,29 @@
 import React, { useState, useEffect } from "react";
-import parse from "html-react-parser"
 import DOMPurify from "dompurify"
+import parse from "html-react-parser"
+
+import axios from 'axios'
 
 const Modal = (props) => {
-    const [showModal, setShowModal] = useState(false);
     const application = props.application;
+    const [showModal, setShowModal] = useState(false);
+    const [content, setContent] = useState('');
 
+    const fetchReadme = async () => {
+        if (!application.urls.github) {
+            return
+        } else {
+            const url = application.urls["github"][0]
+            const owner = url.split("/")[3]
+            const repo = url.split("/")[4]
+            const slug = owner + "-" + repo
+            const results = await axios.get('/.netlify/functions/getReadme?slug=' + slug)
+            const cleanHTML = DOMPurify.sanitize(results.data, {
+                USE_PROFILES: { html: true },
+            });
+            setContent(parse(cleanHTML))
+        }
+    }
 
     useEffect(() => {
         const close = (e) => {
@@ -17,21 +35,23 @@ const Modal = (props) => {
         return () => window.removeEventListener('keydown', close)
     }, [])
 
-    const cleanHTML = DOMPurify.sanitize(application.readme, {
-        USE_PROFILES: { html: true },
-    });
+    useEffect(() => {
+        fetchReadme()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
 
     return (
         <>
-        <div class="col-auto">
-            <button
-                className="bg-slate-200 text-indigo-700 active:bg-sky-500 
+            <div className="col-auto">
+                <button
+                    className="bg-slate-200 text-indigo-700 active:bg-sky-500 
       font-bold px-6 mt-16 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                type="button"
-                onClick={() => setShowModal(true)}
-            >
-                Learn More
-            </button>
+                    type="button"
+                    onClick={() => setShowModal(true)}
+                >
+                    Learn More
+                </button>
             </div>
 
 
@@ -77,7 +97,7 @@ const Modal = (props) => {
                                                     ))}</dd>
                                             </dl>
                                             <div className="readmemd text-left leading-8 overflow-y-scroll box-border ">
-                                                {parse(cleanHTML)}
+                                                {content}
                                             </div>
                                             <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                                                 <button

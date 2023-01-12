@@ -6,6 +6,9 @@ exports.handler = async (event, context) => {
   const apps = await getCollection();
   try {
     const res = await apps.find({ name: { $eq: tag } });
+    if (tag === "all") {
+      console.log(JSON.stringify(res))
+    }
     const formattedTodos = Object.keys(res.data).map((item) => res.data[item]);
     return {
       statusCode: 200,

@@ -31,7 +31,7 @@ const Card = (props) => {
               ))}</dd>
 
           </dl>
-          <div class="row float-right">
+          <div className="row float-right">
             <Modal application={application} filteredTag={props.filteredTag} />
             <DropDown application={application} />
           </div>
