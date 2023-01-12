@@ -23,6 +23,16 @@ const App = () => {
   const [starters, setStarters] = useState(null)
   const [workshops, setWorkshops] = useState(null)
   const [home, setHome] = useState(null)
+  const [render, setRender] = useState(null)
+
+  const [showLang, setLang] = useState(false)
+  const [showAPI, setAPI] = useState(false)
+  const [showFrame, setFrame] = useState(false)
+  const [showInt, setInt] = useState(false)
+  const [showTech, setTech] = useState(false)
+  const [showUse, setUse] = useState(false)
+  const [showOther, setOther] = useState(false)
+  const [section, setSection] = useState({})
 
   const fetchHomeApps = async (filterlist) => {
     const results = await axios.get('/.netlify/functions/getCategory?tag=all')
@@ -49,12 +59,80 @@ const App = () => {
     setDataTools(filterApps(results.data[0].tools.apps))
   }
 
-
   const fetchData = async () => {
     const allTags = await axios.get('/.netlify/functions/getAllTags')
     let newtags = Object.values(allTags.data);
     newtags.sort((a, b) => b.count - a.count);
     setTags(Object.values(newtags))
+    await setSections(newtags)
+  }
+
+  let languages = []
+  let frameworks = []
+  let apis = []
+  let secret = []
+  let standard = []
+  let integrations = []
+  let technology = []
+  let usecases = []
+
+  const setSections = async (tagset) => {
+    let sections = {}
+      
+    for (let tag in tagset) {
+      let tagobj = tagset[tag]
+      if (["javascript", "csharp", "java", "nodejs", "python", "c#", "scala", "ios", "android"].includes(tagobj.name)) {
+        languages.push(tagobj)
+        sections[tagset[tag]["name"]] = "languages"
+        console.log("SET LANGUAGES FOR " + tagset[tag]["name"])
+      } else if (["doc api", "graphql api", "rest api", "gprc api", "devops-apis"].includes(tagobj.name)) {
+        apis.push(tagobj)
+        sections[tagset[tag]["name"]] = "apis"
+      } else if (["workshop", "apps", "starters", "dev", "tools", "examples", "building-sample-apps"].includes(tagobj.name)) {
+        secret.push(tagobj)
+      } else if (["selenium", "react", "spring", "django", "nextjs", "nestjs", "angular", "redux", "webflux", "elixir", "serverless-framework", "streaming", "video"].includes(tagobj.name)) {
+        frameworks.push(tagobj)
+        sections[tagset[tag]["name"]] = "frameworks"
+      } else if (["kubernetes", "k8ssandra", "cql", "nosql", "astradb", "dse", "cassandra", "fastapi", "datastax", "keyspaces"].includes(tagobj.name)) {
+        technology.push(tagobj)
+        sections[tagset[tag]["name"]] = "technology"
+      } else if (["eddiehub", "jamstack", "netlify", "gitpod", "template", "google-cloud"].includes(tagobj.name)) {
+        integrations.push(tagobj)
+        sections[tagset[tag]["name"]] = "integrations"
+      } else if (["change data capture", "ansible-playbooks", "machine learning", "graph", "ai", "game", "performance testing", "ds-bulk", "timeseries db", "killrvideo", "devops"].includes(tagobj.name)) {
+        usecases.push(tagobj)
+        sections[tagset[tag]["name"]] = "usecases"
+      } else {
+        standard.push(tagobj)
+        sections[tagset[tag]["name"]] = "other"
+      }
+    }
+    setSection(sections)
+      console.log("Sections is " + JSON.stringify(section))
+      
+  }
+
+  const showHide = {
+    showAPI: showAPI,
+    setAPI: setAPI,
+    showLang: showLang,
+    setLang: setLang,
+    showInt: showInt,
+    setInt: setInt,
+    showTech: showTech,
+    setTech: setTech,
+    showOther: showOther,
+    setOther: setOther,
+    showFrame: showFrame,
+    setFrame: setFrame,
+    showUse: showUse,
+    setUse: setUse,
+    integrations: integrations,
+    languages: languages,
+    frameworks: frameworks,
+    usecases: usecases,
+    other: standard,
+    apis: apis
   }
 
   useEffect(() => {
@@ -64,7 +142,6 @@ const App = () => {
     fetchHomeApps(filterlist)
     fetchSamples(filterlist)
     fetchDataTools(filterlist)
-    
     fetchData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters])
@@ -73,8 +150,29 @@ const App = () => {
     return (filters.indexOf(tagname) !== -1)
   }
 
+    
+
   const handleFilters = (tagname, e) => {
     e.preventDefault();
+  
+    if (section[tagname] === "languages") {
+      console.log("LANGUAGES")
+      setLang(true)
+    } else if (section[tagname] === "technology") {
+      setTech(true)
+    } else if (section[tagname] === "integrations") {
+      setInt(true)
+    } else if (section[tagname] === "apis") {
+      setAPI(true)
+    } else if (section[tagname] === "frameworks") {
+      setFrame(true)
+    } else if (section[tagname] === "usecases") {
+      setUse(true)
+    } else if (section[tagname] === "other") {
+      setOther(true)
+    }
+    setRender(true)
+
     if (tagname === "all") {
       setFilters([])
       return;
@@ -108,20 +206,69 @@ const App = () => {
 
   return (
     <>
-    
+
       <HashRouter>
         <Header />
         <div name="wrapper" className="row">
-          <div name="Leftbar" className='col-1'>
-            <LeftBar filters={filters} onClick={handleFilters} tagset={tagset} filteredTag={filteredTag} />
+          <div name="Leftbar" className='col-2 ml-2'>
+            <LeftBar filters={filters} onClick={handleFilters}
+              tagset={tagset}
+              filteredTag={filteredTag}
+              showAPI={showAPI}
+              setAPI={setAPI}
+              showLang={showLang}
+              setLang={setLang}
+              showInt={showInt}
+              setInt={setInt}
+              showTech={showTech}
+              setTech={setTech}
+              showOther={showOther}
+              setOther={setOther}
+              showFrame={showFrame}
+              setFrame={setFrame}
+              showUse={showUse}
+              setUse={setUse}
+              integrations={integrations}
+              languages={languages}
+              frameworks={frameworks}
+              usecases={usecases}
+              other={standard}
+              apis={apis}
+            />
           </div>
           <div name="gallery cards" className='col-9'>
             <Switch>
-              <Route path="/workshops" render={(props) => <Workshops apps={workshops} filters={filters} onClick={handleFilters} filteredTag={filteredTag} {...props} />} />
-              <Route path="/starters" render={(props) => <StarterApps apps={starters} filters={filters} onClick={handleFilters} filteredTag={filteredTag} {...props} />} />
-              <Route path="/datatools" render={(props) => <DataTools apps={datatools} filters={filters} onClick={handleFilters} filteredTag={filteredTag} {...props} />} />
-              <Route path="/samples" render={(props) => <SampleApps apps={samples} filters={filters} onClick={handleFilters} filteredTag={filteredTag} {...props} />} />
-              <Route path="/" render={(props) => <Home apps={home} filters={filters} onClick={handleFilters} filteredTag={filteredTag} {...props} />} />
+              <Route path="/workshops"
+                render={(props) =>
+                  <Workshops apps={workshops}
+                    filters={filters} onClick={handleFilters} filteredTag={filteredTag}
+                    tagset={tagset}
+                    showHide={showHide}
+                    {...props} />} />
+              <Route path="/starters" render={(props) => <StarterApps apps={starters}
+                filters={filters} onClick={handleFilters}
+                tagset={tagset}
+                filteredTag={filteredTag}
+                showHide={showHide}
+                {...props} />} ></Route>
+              <Route path="/datatools" render={(props) => <DataTools apps={datatools}
+                tagset={tagset}
+                filteredTag={filteredTag}
+                showHide={showHide}
+
+
+
+                filters={filters} onClick={handleFilters} {...props} />} />
+              <Route path="/samples" render={(props) => <SampleApps apps={samples}
+                tagset={tagset}
+                filteredTag={filteredTag} showHide={showHide}
+
+                filters={filters} onClick={handleFilters} {...props} />} />
+              <Route path="/" render={(props) => <Home apps={home} filters={filters}
+                tagset={tagset}
+                filteredTag={filteredTag}
+                showHide={showHide}
+                onClick={handleFilters} {...props} />} />
             </Switch>
           </div>
         </div>
