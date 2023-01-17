@@ -18,6 +18,7 @@ const Modal = (props) => {
         return () => window.removeEventListener('keydown', close)
     }, [])
 
+
     useEffect(() => {
         getReadme(application)
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -39,9 +40,7 @@ const Modal = (props) => {
                 const cleanHTML = DOMPurify.sanitize(results.data, {
                     USE_PROFILES: { html: true },
                 });
-                console.log(cleanHTML)
                 application["readme"] = parse(cleanHTML)
-                console.log("SET README FOR" + slug)
             } catch (e) {
                 console.log("No README for " + slug)
             }
@@ -64,7 +63,7 @@ const Modal = (props) => {
 
 
             {showModal ? (
-                <>
+                <div id='modal' onClick={() => setShowModal(false)}>
                     <div className="flex flex-wrap justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bottom-20 top-20">
                         <div className="relative w-auto my-6 mx-auto max-w-3xl">
                             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
@@ -122,9 +121,10 @@ const Modal = (props) => {
                                     </div>
                                 </div>
                             </div>
+                            </div>
                         </div>
                     </div>
-                </>
+            
             ) : null}
         </>
     );

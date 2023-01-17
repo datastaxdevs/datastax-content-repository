@@ -76,6 +76,23 @@ const App = () => {
   let technology = []
   let usecases = []
 
+  const showHide = {
+    showAPI: showAPI,
+    setAPI: setAPI,
+    showLang: showLang,
+    setLang: setLang,
+    showInt: showInt,
+    setInt: setInt,
+    showTech: showTech,
+    setTech: setTech,
+    showOther: showOther,
+    setOther: setOther,
+    showFrame: showFrame,
+    setFrame: setFrame,
+    showUse: showUse,
+    setUse: setUse
+  }
+
   const setSections = async (tagset) => {
     let sections = {}
 
@@ -110,23 +127,7 @@ const App = () => {
     setSection(sections)
 
   }
-
-  const showHide = {
-    showAPI: showAPI,
-    setAPI: setAPI,
-    showLang: showLang,
-    setLang: setLang,
-    showInt: showInt,
-    setInt: setInt,
-    showTech: showTech,
-    setTech: setTech,
-    showOther: showOther,
-    setOther: setOther,
-    showFrame: showFrame,
-    setFrame: setFrame,
-    showUse: showUse,
-    setUse: setUse
-  }
+  
   useEffect(() => {
     let filterlist = filters.join(',')
     fetchWorkshops(filterlist)
