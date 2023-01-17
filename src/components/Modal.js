@@ -7,23 +7,6 @@ import axios from 'axios'
 const Modal = (props) => {
     const application = props.application;
     const [showModal, setShowModal] = useState(false);
-    const [content, setContent] = useState('');
-
-    const fetchReadme = async () => {
-        if (!application.urls.github) {
-            return
-        } else {
-            const url = application.urls["github"][0]
-            const owner = url.split("/")[3]
-            const repo = url.split("/")[4]
-            const slug = owner + "-" + repo
-            const results = await axios.get('/.netlify/functions/getReadme?slug=' + slug)
-            const cleanHTML = DOMPurify.sanitize(results.data, {
-                USE_PROFILES: { html: true },
-            });
-            setContent(parse(cleanHTML))
-        }
-    }
 
     useEffect(() => {
         const close = (e) => {
@@ -36,9 +19,34 @@ const Modal = (props) => {
     }, [])
 
     useEffect(() => {
-        fetchReadme()
+        getReadme(application)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [showModal])
+
+    const getReadme = async (app) => {
+        
+        console.log("Trying" + JSON.stringify(app))
+        if (!app["urls"]["github"]) {
+            console.log("NO GITHUB" + JSON.stringify(app["urls"]["github"]))
+        } else {
+            const url = app["urls"]["github"][0]
+            const owner = url.split("/")[3]
+            const repo = url.split("/")[4]
+            const slug = owner + "-" + repo
+
+            try {
+                const results = await axios.get('/.netlify/functions/getReadme?slug=' + slug)
+                const cleanHTML = DOMPurify.sanitize(results.data, {
+                    USE_PROFILES: { html: true },
+                });
+                console.log(cleanHTML)
+                application["readme"] = parse(cleanHTML)
+                console.log("SET README FOR" + slug)
+            } catch (e) {
+                console.log("No README for " + slug)
+            }
+        }
+    }
 
 
     return (
@@ -97,7 +105,7 @@ const Modal = (props) => {
                                                     ))}</dd>
                                             </dl>
                                             <div className="readmemd text-left leading-8 overflow-y-scroll box-border ">
-                                                {content}
+                                                {application.readme}
                                             </div>
                                             <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                                                 <button
@@ -107,13 +115,7 @@ const Modal = (props) => {
                                                 >
                                                     Close
                                                 </button>
-                                                <button
-                                                    className="text-black bg-yellow-500 active:bg-yellow-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                                                    type="button"
-                                                    onClick={() => setShowModal(false)}
-                                                >
-                                                    Submit
-                                                </button>
+
                                             </div>
                                         </div>
 

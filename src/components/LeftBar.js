@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 const LeftBar = (props) => {
@@ -8,7 +8,7 @@ const LeftBar = (props) => {
   let frameworks = []
   let apis = []
   let secret = []
-  let standard = []
+  let other = []
   let integrations = []
   let technology = []
   let usecases = []
@@ -19,18 +19,18 @@ const LeftBar = (props) => {
       languages.push(tagobj)
     } else if (["doc api", "graphql api", "rest api", "gprc api", "devops-apis"].includes(tagobj.name)) {
       apis.push(tagobj)
-    } else if (["workshop", "apps", "starters", "dev", "tools", "examples", "building-sample-apps"].includes(tagobj.name)) {
+    } else if (["workshop", "apps", "starters", "dev", "tools", "examples","building-sample-apps"].includes(tagobj.name)) {
       secret.push(tagobj)
-    } else if (["selenium", "react", "spring", "django", "nextjs", "nestjs", "angular", "redux", "webflux", "elixir", "serverless-framework", "streaming", "video"].includes(tagobj.name)) {
+    } else if (["selenium","react", "spring", "django", "nextjs", "nestjs", "angular", "redux", "webflux", "elixir", "serverless-framework","streaming","video"].includes(tagobj.name)) {
       frameworks.push(tagobj)
-    } else if (["kubernetes", "k8ssandra", "cql", "nosql", "astradb", "dse", "cassandra", "fastapi", "datastax", "keyspaces"].includes(tagobj.name)) {
+    } else if (["kubernetes","k8ssandra","cql", "nosql", "astradb", "dse", "cassandra", "fastapi","datastax", "keyspaces"].includes(tagobj.name)) {
       technology.push(tagobj)
     } else if (["eddiehub", "jamstack", "netlify", "gitpod", "template", "google-cloud"].includes(tagobj.name)) {
       integrations.push(tagobj)
-    } else if (["change data capture", "ansible-playbooks", "machine learning", "graph", "ai", "game", "performance testing", "ds-bulk", "timeseries db", "killrvideo", "devops"].includes(tagobj.name)) {
+    } else if (["change data capture","ansible-playbooks","machine learning", "graph","ai", "game", "performance testing", "ds-bulk", "timeseries db", "killrvideo", "devops"].includes(tagobj.name)) {
       usecases.push(tagobj)
     } else {
-      standard.push(tagobj)
+      other.push(tagobj)
     }
   }
 
@@ -38,9 +38,9 @@ const LeftBar = (props) => {
     <>
       {props.tagset && (
         <div className="flex flex-column">
-          <h4>Languages <button type="button" onClick={() => { props.setLang(!props.showLang) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
+          <h4>Languages <button type="button" onClick={() => { props.showHide.setLang(!props.showHide.showLang) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
           </h4>
-          {props.showLang && <span name="languages">
+          {props.showHide.showLang && <span name="languages">
             {
               languages.map(
                 (tag, index) =>
@@ -54,9 +54,9 @@ const LeftBar = (props) => {
               )}
           </span>
           }
-          <h4>Technology <button type="button" onClick={() => { props.setTech(!props.showTech) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
+          <h4>Technology <button type="button" onClick={() => { props.showHide.setTech(!props.showHide.showTech) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
           </h4>
-          {props.showTech && <span name="technology">
+          {props.showHide.showTech && <span name="technology">
             {
               technology.map(
                 (tag, index) =>
@@ -70,9 +70,9 @@ const LeftBar = (props) => {
               )}
           </span>
           }
-          <h4>Integrations <button type="button" onClick={() => { props.setInt(!props.showInt) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
+          <h4>Integrations <button type="button" onClick={() => { props.showHide.setInt(!props.showHide.showInt) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
           </h4>
-          {props.showInt && <span name="integrations">
+          {props.showHide.showInt && <span name="integrations">
             {
               integrations.map(
                 (tag, index) =>
@@ -86,9 +86,9 @@ const LeftBar = (props) => {
               )}
           </span>
           }
-          <h4>APIs <button type="button" onClick={() => { props.setAPI(!props.showAPI) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
+          <h4>APIs <button type="button" onClick={() => { props.showHide.setAPI(!props.showHide.showAPI) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
           </h4>
-          {props.showAPI && <span name="apis">
+          {props.showHide.showAPI && <span name="apis">
             {
               apis.map(
                 (tag, index) =>
@@ -102,9 +102,9 @@ const LeftBar = (props) => {
               )}
           </span>
           }
-          <h4>Frameworks <button type="button" onClick={() => { props.setFrame(!props.showFrame) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
+          <h4>Frameworks <button type="button" onClick={() => { props.showHide.setFrame(!props.showHide.showFrame) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
           </h4>
-          {props.showFrame && <span name="frameworks">
+          {props.showHide.showFrame && <span name="frameworks">
             {
               frameworks.map(
                 (tag, index) =>
@@ -118,9 +118,9 @@ const LeftBar = (props) => {
               )}
           </span>
           }
-          <h4>Use Cases <button type="button" onClick={() => { props.setUse(!props.showUse) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
+          <h4>Use Cases <button type="button" onClick={() => { props.showHide.setUse(!props.showHide.showUse) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
           </h4>
-          {props.showUse && <span name="usecases">
+          {props.showHide.showUse && <span name="usecases">
             {
               usecases.map(
                 (tag, index) =>
@@ -134,11 +134,11 @@ const LeftBar = (props) => {
               )}
           </span>
           }
-          <h4>Other <button type="button" onClick={() => { props.setOther(!props.showOther) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
+          <h4>Other <button type="button" onClick={() => { props.showHide.setOther(!props.showHide.showOther) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
           </h4>
-          {props.showOther && <span name="other">
+          {props.showHide.showOther && <span name="other">
             {
-              standard.map(
+              other.map(
                 (tag, index) =>
                   <button key={index} className={props.filteredTag(tag.name) ?
                     'inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-center text-xs font-bold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' :

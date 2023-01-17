@@ -15,6 +15,7 @@ import './index.css'
 import './output.css'
 import axios from 'axios'
 
+
 const App = () => {
   const [tagset, setTags] = useState(null)
   const [filters, setFilters] = useState([]);
@@ -44,8 +45,8 @@ const App = () => {
   }
 
   const fetchStarters = async (filterlist) => {
-    const results = await axios.get('/.netlify/functions/getCategory?tag=starters')
-    setStarters(filterApps(results.data[0].starters.apps))
+    const results = await axios.get('/.netlify/functions/getCategory?tag=starter')
+    setStarters(filterApps(results.data[0].starter.apps))
   }
 
   const fetchSamples = async (filterlist) => {
@@ -70,14 +71,14 @@ const App = () => {
   let frameworks = []
   let apis = []
   let secret = []
-  let standard = []
+  let other = []
   let integrations = []
   let technology = []
   let usecases = []
 
   const setSections = async (tagset) => {
     let sections = {}
-      
+
     for (let tag in tagset) {
       let tagobj = tagset[tag]
       if (["javascript", "csharp", "java", "nodejs", "python", "c#", "scala", "ios", "android"].includes(tagobj.name)) {
@@ -102,13 +103,12 @@ const App = () => {
         usecases.push(tagobj)
         sections[tagset[tag]["name"]] = "usecases"
       } else {
-        standard.push(tagobj)
+        other.push(tagobj)
         sections[tagset[tag]["name"]] = "other"
       }
     }
     setSection(sections)
-      console.log("Sections is " + JSON.stringify(section))
-      
+
   }
 
   const showHide = {
@@ -125,15 +125,8 @@ const App = () => {
     showFrame: showFrame,
     setFrame: setFrame,
     showUse: showUse,
-    setUse: setUse,
-    integrations: integrations,
-    languages: languages,
-    frameworks: frameworks,
-    usecases: usecases,
-    other: standard,
-    apis: apis
+    setUse: setUse
   }
-
   useEffect(() => {
     let filterlist = filters.join(',')
     fetchWorkshops(filterlist)
@@ -145,17 +138,20 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters])
 
+  
+  useEffect(() => {
+    console.log("Re-rendering")
+  }, [showLang, showAPI, showTech, showInt, showOther, showFrame])
+
+  
   function filteredTag(tagname) {
     return (filters.indexOf(tagname) !== -1)
   }
 
-    
-
   const handleFilters = (tagname, e) => {
     e.preventDefault();
-  
+
     if (section[tagname] === "languages") {
-      console.log("LANGUAGES")
       setLang(true)
     } else if (section[tagname] === "technology") {
       setTech(true)
@@ -211,27 +207,8 @@ const App = () => {
           <div name="Leftbar" className='col-2 ml-2'>
             <LeftBar filters={filters} onClick={handleFilters}
               tagset={tagset}
-              filteredTag={filteredTag}
-              showAPI={showAPI}
-              setAPI={setAPI}
-              showLang={showLang}
-              setLang={setLang}
-              showInt={showInt}
-              setInt={setInt}
-              showTech={showTech}
-              setTech={setTech}
-              showOther={showOther}
-              setOther={setOther}
-              showFrame={showFrame}
-              setFrame={setFrame}
-              showUse={showUse}
-              setUse={setUse}
-              integrations={integrations}
-              languages={languages}
-              frameworks={frameworks}
-              usecases={usecases}
-              other={standard}
-              apis={apis}
+              filteredTag={filteredTag} ƒ
+              showHide={showHide}
             />
           </div>
           <div name="gallery cards" className='col-9'>
