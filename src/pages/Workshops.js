@@ -13,6 +13,7 @@ const Workshops = (props) => {
             onClick={props.onClick}
             filteredTag={props.filteredTag}
             filters={props.filters}
+            showHide={props.showHide}
             {...props} 
           />
         ))}

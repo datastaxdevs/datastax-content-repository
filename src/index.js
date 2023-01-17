@@ -23,7 +23,6 @@ const App = () => {
   const [starters, setStarters] = useState(null)
   const [workshops, setWorkshops] = useState(null)
   const [home, setHome] = useState(null)
-  const [render, setRender] = useState(null)
 
   const [showLang, setLang] = useState(false)
   const [showAPI, setAPI] = useState(false)
@@ -171,7 +170,6 @@ const App = () => {
     } else if (section[tagname] === "other") {
       setOther(true)
     }
-    setRender(true)
 
     if (tagname === "all") {
       setFilters([])
