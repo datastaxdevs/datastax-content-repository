@@ -1,6 +1,9 @@
 import React from 'react'
 import Card from '../components/Card'
 
+// Workshops, including badges
+
+
 const Workshops = (props) => {
   //console.log("HOME:" + JSON.stringify(props.apps))
    return (
@@ -14,6 +17,8 @@ const Workshops = (props) => {
             filteredTag={props.filteredTag}
             filters={props.filters}
             showHide={props.showHide}
+            slugs={props.slugs}
+            setSlugs={props.setSlugs}
             {...props} 
           />
         ))}

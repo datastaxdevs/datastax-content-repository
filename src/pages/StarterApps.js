@@ -1,6 +1,9 @@
 import React from 'react'
 import Card from '../components/Card'
 
+
+// StarterApps shows all 'starter' applications.
+
 const StarterApps = (props) => {
   //console.log("HOME:" + JSON.stringify(props.apps))
    return (
@@ -14,6 +17,8 @@ const StarterApps = (props) => {
             filteredTag={props.filteredTag}
             filters={props.filters}
             showHide={props.showHide}
+            slugs={props.slugs}
+            setSlugs={props.setSlugs}
             {...props} 
           />
         ))}

@@ -4,6 +4,8 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid'
 const LeftBar = (props) => {
   //props.tagset && props.tagset.sort((a, b) => parseFloat(b.count) - parseFloat(a.count));
 
+  // group the tags by type, to create the groupings in the left pane.
+
   let languages = []
   let frameworks = []
   let apis = []
@@ -34,10 +36,16 @@ const LeftBar = (props) => {
     }
   }
 
+  // Dropdown menus for each of the tag grouping to open/close the section.
+  // Tags selected in cards will also open the appropriate section
+
   return (
     <>
       {props.tagset && (
         <div className="flex flex-column">
+          <button type="button" onClick={() => { props.resetFilters() }}> <h3 align="left"><b>Reset Filters</b></h3></button>
+          
+          <hr />
           <h4>Languages <button type="button" onClick={() => { props.showHide.setLang(!props.showHide.showLang) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
           </h4>
           {props.showHide.showLang && <span name="languages">

@@ -1,5 +1,7 @@
 const { getCollection } = require("./utils/astraClient");
 
+// get the associated applications for a specific tag
+
 exports.handler = async (event, context) => {
   const tag = event.queryStringParameters.tag
   

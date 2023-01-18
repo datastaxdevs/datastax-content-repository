@@ -1,5 +1,8 @@
 const { getCollection } = require("./utils/astraClient");
 
+// Retrieve all tags, recursively grab the next block
+// with pageState and combine together before returning
+
 exports.handler = async (event, context) => {
   
   async function findTagsRecursive (pagestate, alltags = [])  {

@@ -4,9 +4,15 @@ import parse from "html-react-parser"
 
 import axios from 'axios'
 
+// Pop-up for each application
+
 const Modal = (props) => {
     const application = props.application;
     const [showModal, setShowModal] = useState(false);
+    let slugs = props.slugs
+    let setSlugs = props.setSlugs
+
+    // Esc or any click closes the modal
 
     useEffect(() => {
         const close = (e) => {
@@ -18,14 +24,14 @@ const Modal = (props) => {
         return () => window.removeEventListener('keydown', close)
     }, [])
 
-
+    // When the modal is created, grab the readme to show
     useEffect(() => {
         getReadme(application)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [showModal])
+    }, [])
 
     const getReadme = async (app) => {
-        
+        let slugobjs = slugs
         console.log("Trying" + JSON.stringify(app))
         if (!app["urls"]["github"]) {
             console.log("NO GITHUB" + JSON.stringify(app["urls"]["github"]))
@@ -34,15 +40,23 @@ const Modal = (props) => {
             const owner = url.split("/")[3]
             const repo = url.split("/")[4]
             const slug = owner + "-" + repo
-
+            if (slugobjs[slug]){
+                application["readme"] = slugobjs[slug]
+                console.log("Already in slugs")
+                return
+            }
             try {
                 const results = await axios.get('/.netlify/functions/getReadme?slug=' + slug)
                 const cleanHTML = DOMPurify.sanitize(results.data, {
                     USE_PROFILES: { html: true },
                 });
                 application["readme"] = parse(cleanHTML)
+                slugobjs[slug] = parse(cleanHTML)
+                setSlugs(slugobjs);
             } catch (e) {
                 console.log("No README for " + slug)
+                slugobjs[slug] = ' '
+                setSlugs(slugobjs);
             }
         }
     }
