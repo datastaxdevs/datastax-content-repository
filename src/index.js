@@ -37,8 +37,9 @@ const App = () => {
   }
 
   const fetchStarters = async (filterlist) => {
-    const results = await axios.get('/.netlify/functions/getCategory?tag=starter')
-    setStarters(filterApps(results.data[0].starter.apps))
+    const results = await axios.get('/.netlify/functions/getCategory?tag=starters')
+    console.log("RESULTS: " + JSON.stringify(results.data))
+    setStarters(filterApps(results.data[0].starters.apps))
   }
 
   const fetchSamples = async (filterlist) => {

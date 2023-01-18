@@ -40,7 +40,7 @@ const DropDown = (props) => {
                         <Menu.Item key={url.url} as={Fragment} className="py-1 px-1 box-border border-2">
                             {({ active }) => (
                                 <a 
-                                    href={url.url}
+                                    href={url.url} target="_blank" rel="noreferrer"
                                     className={`${active ? 'bg-blue-500 text-white' : 'bg-white text-black'}`}
                                 >
                                     {url.display}

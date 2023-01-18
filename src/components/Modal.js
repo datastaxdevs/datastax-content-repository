@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import DOMPurify from "dompurify"
 import parse from "html-react-parser"
-
 import axios from 'axios'
 
 // Pop-up for each application
 
 const Modal = (props) => {
     const application = props.application;
-    const [showModal, setShowModal] = useState(false);
+    const setShowModal = props.setShowModal
+    const showModal = props.showModal
     let slugs = props.slugs
     let setSlugs = props.setSlugs
 
@@ -22,13 +22,15 @@ const Modal = (props) => {
         }
         window.addEventListener('keydown', close)
         return () => window.removeEventListener('keydown', close)
-    }, [])
+    }, [setShowModal])
 
     // When the modal is created, grab the readme to show
     useEffect(() => {
         getReadme(application)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    // Read in the README, just once per app, for the modals to show.
 
     const getReadme = async (app) => {
         let slugobjs = slugs
@@ -64,18 +66,6 @@ const Modal = (props) => {
 
     return (
         <>
-            <div className="col-auto">
-                <button
-                    className="bg-slate-200 text-indigo-700 active:bg-sky-500 
-      font-bold px-6 mt-16 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                    type="button"
-                    onClick={() => setShowModal(true)}
-                >
-                    Learn More
-                </button>
-            </div>
-
-
             {showModal ? (
                 <div id='modal' onClick={() => setShowModal(false)}>
                     <div className="flex flex-wrap justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bottom-20 top-20">

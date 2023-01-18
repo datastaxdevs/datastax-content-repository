@@ -20,6 +20,10 @@
     width:inherit
 }
 
+.heroimage {
+    cursor: pointer;
+}
+
 .icon {
     background: transparent no-repeat 50%;
     background-size:16px

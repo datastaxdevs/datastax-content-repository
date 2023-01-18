@@ -610,12 +610,12 @@ video {
   z-index: 50;
 }
 
-.col-auto {
-  grid-column: auto;
-}
-
 .col-span-1 {
   grid-column: span 1 / span 1;
+}
+
+.col-auto {
+  grid-column: auto;
 }
 
 .float-right {
@@ -648,16 +648,16 @@ video {
   margin-top: 4rem;
 }
 
-.-mr-2 {
-  margin-right: -0.5rem;
-}
-
 .mr-1 {
   margin-right: 0.25rem;
 }
 
 .mb-1 {
   margin-bottom: 0.25rem;
+}
+
+.-mr-2 {
+  margin-right: -0.5rem;
 }
 
 .box-border {
@@ -726,10 +726,6 @@ video {
 
 .w-6 {
   width: 1.5rem;
-}
-
-.max-w-7xl {
-  max-width: 80rem;
 }
 
 .max-w-3xl {
@@ -819,10 +815,6 @@ video {
   overflow-y: scroll;
 }
 
-.rounded-2xl {
-  border-radius: 1rem;
-}
-
 .rounded-lg {
   border-radius: 0.5rem;
 }
@@ -882,14 +874,14 @@ video {
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 
-.bg-blue-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
-}
-
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-slate-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
 }
 
 .bg-indigo-500 {
@@ -912,11 +904,6 @@ video {
   background-color: rgb(224 231 255 / var(--tw-bg-opacity));
 }
 
-.bg-slate-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
-}
-
 .bg-transparent {
   background-color: transparent;
 }
@@ -924,10 +911,6 @@ video {
 .bg-gray-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(156 163 175 / var(--tw-bg-opacity));
-}
-
-.p-4 {
-  padding: 1rem;
 }
 
 .p-8 {
@@ -940,11 +923,6 @@ video {
 
 .p-6 {
   padding: 1.5rem;
-}
-
-.px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
 }
 
 .px-6 {
@@ -987,10 +965,6 @@ video {
   padding-bottom: 0.5rem;
 }
 
-.pl-0 {
-  padding-left: 0px;
-}
-
 .pb-11 {
   padding-bottom: 2.75rem;
 }
@@ -1005,11 +979,6 @@ video {
 
 .text-center {
   text-align: center;
-}
-
-.text-base {
-  font-size: 1rem;
-  line-height: 1.5rem;
 }
 
 .text-sm {
@@ -1032,10 +1001,6 @@ video {
   line-height: 1.75rem;
 }
 
-.font-semibold {
-  font-weight: 600;
-}
-
 .font-medium {
   font-weight: 500;
 }
@@ -1052,11 +1017,6 @@ video {
   line-height: 2rem;
 }
 
-.text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
 .text-gray-900 {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
@@ -1067,14 +1027,19 @@ video {
   color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
-.text-black {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
-}
-
 .text-indigo-700 {
   --tw-text-opacity: 1;
   color: rgb(67 56 202 / var(--tw-text-opacity));
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .text-red-500 {
@@ -1125,11 +1090,6 @@ video {
           filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
-.hover\:bg-blue-500:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
-}
-
 .hover\:bg-indigo-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(67 56 202 / var(--tw-bg-opacity));
@@ -1166,16 +1126,9 @@ video {
   --tw-ring-offset-width: 2px;
 }
 
-.focus-visible\:outline-2:focus-visible {
-  outline-width: 2px;
-}
-
-.focus-visible\:outline-offset-2:focus-visible {
-  outline-offset: 2px;
-}
-
-.focus-visible\:outline-blue-500:focus-visible {
-  outline-color: #3b82f6;
+.active\:bg-sky-500:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(14 165 233 / var(--tw-bg-opacity));
 }
 
 .active\:bg-indigo-200:active {
@@ -1183,23 +1136,9 @@ video {
   background-color: rgb(199 210 254 / var(--tw-bg-opacity));
 }
 
-.active\:bg-sky-500:active {
-  --tw-bg-opacity: 1;
-  background-color: rgb(14 165 233 / var(--tw-bg-opacity));
-}
-
-.active\:text-white\/70:active {
-  color: rgb(255 255 255 / 0.7);
-}
-
 @media (min-width: 640px) {
   .sm\:justify-between {
     justify-content: space-between;
-  }
-
-  .sm\:px-6 {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
   }
 }
 
@@ -1220,11 +1159,6 @@ video {
 
   .lg\:flex-nowrap {
     flex-wrap: nowrap;
-  }
-
-  .lg\:px-8 {
-    padding-left: 2rem;
-    padding-right: 2rem;
   }
 
   .lg\:pt-11 {
