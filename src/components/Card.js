@@ -15,7 +15,7 @@ const Card = (props) => {
           >
             {application?.urls?.heroimage && <img className="mx-auto h-32 w-32 flex-shrink-0 rounded-full" src={application.urls.heroimage} alt={application.name} width="100px" />}
           </div>
-          <h3 className="mt-6 text-sm font-medium text-gray-900"><a href={application?.urls?.github}>{application.name}</a></h3>
+          <h3 className="mt-6 text-sm font-medium text-gray-900"><a target="_blank" rel="noreferrer" href={application?.urls?.github}>{application.name}</a></h3>
           <dl className="mt-1 flex flex-grow flex-col justify-between">
             <div className="extra-small text-night-300">
               <i className="icon icon--clock icon--night-300 card-gallery__header-icon"></i>

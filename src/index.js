@@ -220,6 +220,7 @@ const App = () => {
       }
       newapps.push(app)
     }
+    newapps.sort((a, b) => b.tags.length - a.tags.length);
     return newapps
   }
 
