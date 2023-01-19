@@ -21,7 +21,7 @@ const LeftBar = (props) => {
       languages.push(tagobj)
     } else if (["doc api", "graphql api", "rest api", "gprc api", "devops-apis"].includes(tagobj.name)) {
       apis.push(tagobj)
-    } else if (["workshop", "apps", "starters", "dev", "tools", "examples","building-sample-apps"].includes(tagobj.name)) {
+    } else if (["workshop", "apps", "starters", "dev", "tools", "examples"].includes(tagobj.name)) {
       secret.push(tagobj)
     } else if (["selenium","react", "spring", "django", "nextjs", "nestjs", "angular", "redux", "webflux", "elixir", "serverless-framework","streaming","video"].includes(tagobj.name)) {
       frameworks.push(tagobj)
@@ -29,7 +29,7 @@ const LeftBar = (props) => {
       technology.push(tagobj)
     } else if (["eddiehub", "jamstack", "netlify", "gitpod", "template", "google-cloud"].includes(tagobj.name)) {
       integrations.push(tagobj)
-    } else if (["change data capture","ansible-playbooks","machine learning", "graph","ai", "game", "performance testing", "ds-bulk", "timeseries db", "killrvideo", "devops"].includes(tagobj.name)) {
+    } else if (["change data capture","building-sample-apps","ansible-playbooks","machine learning", "graph","ai", "game", "performance testing", "ds-bulk", "timeseries db", "killrvideo", "devops"].includes(tagobj.name)) {
       usecases.push(tagobj)
     } else {
       other.push(tagobj)
@@ -43,7 +43,7 @@ const LeftBar = (props) => {
     <>
       {props.tagset && (
         <div className="flex flex-column">
-          <button type="button" onClick={() => { props.resetFilters() }}> <h3 align="left"><b>Reset Filters</b></h3></button>
+          <button type="button" className="reset-button" onClick={() => { props.resetFilters() }}> <h3 align="left"><b>Reset Filters</b></h3></button>
           
           <hr />
           <h4>Languages <button type="button" onClick={() => { props.showHide.setLang(!props.showHide.showLang) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>

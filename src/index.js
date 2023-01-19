@@ -115,7 +115,7 @@ const App = () => {
       } else if (["doc api", "graphql api", "rest api", "gprc api", "devops-apis"].includes(tagobj.name)) {
         apis.push(tagobj)
         sections[tagset[tag]["name"]] = "apis"
-      } else if (["workshop", "apps", "starters", "dev", "tools", "examples", "building-sample-apps"].includes(tagobj.name)) {
+      } else if (["workshop", "apps", "starters", "dev", "tools", "examples"].includes(tagobj.name)) {
         secret.push(tagobj)
       } else if (["selenium", "react", "spring", "django", "nextjs", "nestjs", "angular", "redux", "webflux", "elixir", "serverless-framework", "streaming", "video"].includes(tagobj.name)) {
         frameworks.push(tagobj)
@@ -126,7 +126,7 @@ const App = () => {
       } else if (["eddiehub", "jamstack", "netlify", "gitpod", "template", "google-cloud"].includes(tagobj.name)) {
         integrations.push(tagobj)
         sections[tagset[tag]["name"]] = "integrations"
-      } else if (["change data capture", "ansible-playbooks", "machine learning", "graph", "ai", "game", "performance testing", "ds-bulk", "timeseries db", "killrvideo", "devops"].includes(tagobj.name)) {
+      } else if (["change data capture", "building-sample-apps", "ansible-playbooks", "machine learning", "graph", "ai", "game", "performance testing", "ds-bulk", "timeseries db", "killrvideo", "devops"].includes(tagobj.name)) {
         usecases.push(tagobj)
         sections[tagset[tag]["name"]] = "usecases"
       } else {
@@ -229,7 +229,7 @@ const App = () => {
 
       <HashRouter>
         <Header />
-        <div name="wrapper" className="row">
+        <div className="row">
           <div name="Leftbar" className='col-2 ml-2'>
             <LeftBar filters={filters} onClick={handleFilters}
               tagset={tagset}

@@ -13,11 +13,22 @@
     width: 200 !important;
 }
 
+.reset-button h3 {
+    color: blue
+}
+
+.wrapper {
+    background-color:lightsteelblue
+}
 
 .card-gallery--image {
     margin-bottom: 16px;
     object-fit: cover;
     width:inherit
+}
+
+.root {
+    background-color: antiquewhite
 }
 
 .heroimage {
