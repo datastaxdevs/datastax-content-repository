@@ -12,7 +12,8 @@ const Modal = (props) => {
     let slugs = props.slugs
     let setSlugs = props.setSlugs
 
-    // Esc or any click closes the modal
+
+     // Esc or any click closes the modal
 
     useEffect(() => {
         const close = (e) => {
@@ -27,14 +28,41 @@ const Modal = (props) => {
     // When the modal is created, grab the readme to show
     useEffect(() => {
         getReadme(application)
+        getVideo(application)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     // Read in the README, just once per app, for the modals to show.
+    const getVideo = async (app) => {
+        let slugobjs = slugs
+        console.log("Checking out "+ app["name"])
+        
+        if (!app["urls"]["youtube"]) {
+            console.log("NO youtube" + JSON.stringify(app["urls"]["youtube"]))
+            return
+        } else {
+            const url = app["urls"]["youtube"][0]
+            const videoId = url.split("=")[1]
+            if (slugobjs[videoId]){
+                application["video"] = slugobjs[videoId]
+                return
+            }
+            try {
+                const results = await axios.get('/.netlify/functions/getVideo?id=' + videoId)
+                
+                application["video"] = results.data
+                slugobjs[videoId] = application["video"]
+                setSlugs(slugobjs);
+            } catch (e) {
+                console.log("No Video for " + videoId)
+                slugobjs[videoId] = ' '
+                setSlugs(slugobjs);
+            }
+        }
+    }
 
     const getReadme = async (app) => {
         let slugobjs = slugs
-        console.log("Trying" + JSON.stringify(app))
         if (!app["urls"]["github"]) {
             console.log("NO GITHUB" + JSON.stringify(app["urls"]["github"]))
         } else {
@@ -42,6 +70,7 @@ const Modal = (props) => {
             const owner = url.split("/")[3]
             const repo = url.split("/")[4]
             const slug = owner + "-" + repo
+            if (slug === "undefined-undefined") { return }
             if (slugobjs[slug]){
                 application["readme"] = slugobjs[slug]
                 console.log("Already in slugs")
@@ -62,7 +91,6 @@ const Modal = (props) => {
             }
         }
     }
-
 
     return (
         <>
@@ -94,6 +122,18 @@ const Modal = (props) => {
                                                     {application.duration}
                                                     <i className="icon icon--user icon--night-300 card-gallery__header-icon"></i>
                                                     {application.skilllevel}
+                                                    <hr/>
+                                                    <h4>Github statistics</h4>
+                                                    <span className="mt-6 text-sm font-medium text-gray-900">Stars: {application.stargazers} </span>
+                                                    <span className="mt-6 text-sm font-medium text-gray-900">Forks: {application.forks} </span>
+                                                    <hr />
+                                                    {application.video && 
+                                                    <>
+                                                    <h4>Youtube statistics</h4>
+                                                    <span className="mt-6 text-sm font-medium text-gray-900">Viewers: {application.video.statistics.viewCount} </span>
+                                                    <span className="mt-6 text-sm font-medium text-gray-900">Likes: {application.video.statistics.likeCount} </span>
+                                                    <hr />
+                                                    </>}
                                                     <p className="mt-6 text-sm font-medium text-gray-900">{application.description}</p>
 
                                                 </div>

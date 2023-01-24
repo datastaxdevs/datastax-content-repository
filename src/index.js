@@ -38,7 +38,6 @@ const App = () => {
 
   const fetchStarters = async (filterlist) => {
     const results = await axios.get('/.netlify/functions/getCategory?tag=starters')
-    console.log("RESULTS: " + JSON.stringify(results.data))
     setStarters(filterApps(results.data[0].starters.apps))
   }
 
@@ -111,7 +110,6 @@ const App = () => {
       if (["javascript", "csharp", "java", "nodejs", "python", "c#", "scala", "ios", "android"].includes(tagobj.name)) {
         languages.push(tagobj)
         sections[tagset[tag]["name"]] = "languages"
-        console.log("SET LANGUAGES FOR " + tagset[tag]["name"])
       } else if (["doc api", "graphql api", "rest api", "gprc api", "devops-apis"].includes(tagobj.name)) {
         apis.push(tagobj)
         sections[tagset[tag]["name"]] = "apis"
@@ -220,7 +218,7 @@ const App = () => {
       }
       newapps.push(app)
     }
-    newapps.sort((a, b) => b.tags.length - a.tags.length);
+    newapps.sort((a, b) => b.stargazers - a.stargazers);
     return newapps
   }
 
@@ -248,7 +246,6 @@ const App = () => {
                     showHide={showHide}
                     slugs={slugs}
                     setSlugs={setSlugs}
-
                     {...props} />} />
               <Route path="/starters" render={(props) => <StarterApps apps={starters}
                 filters={filters} onClick={handleFilters}

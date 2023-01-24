@@ -48,7 +48,8 @@ const Card = (props) => {
               </button>
             </div>
             <Modal application={application} filteredTag={props.filteredTag} slugs={props.slugs}
-              setSlugs={props.setSlugs} showModal={showModal} setShowModal={setShowModal} />
+              setSlugs={props.setSlugs} showModal={showModal} setShowModal={setShowModal} 
+             />
             <DropDown application={application} />
           </div>
         </div>

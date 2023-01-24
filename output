@@ -1,0 +1,252 @@
+◈ Netlify Dev ◈
+◈ Injecting environment variable values for all scopes
+◈ Ignored general context env var: LANG (defined in process)
+◈ Ignored .env file env var: ASTRA_DB_APPLICATION_TOKEN (defined in process)
+◈ Ignored site settings env var: ASTRA_DB_APPLICATION_TOKEN (defined in process)
+◈ Ignored .env file env var: ASTRA_DB_GRAPHQL_URL (defined in process)
+◈ Ignored site settings env var: ASTRA_DB_GRAPHQL_URL (defined in process)
+◈ Ignored .env file env var: ASTRA_DB_GRAPHQL_URL_ADMIN (defined in process)
+◈ Ignored site settings env var: ASTRA_DB_GRAPHQL_URL_ADMIN (defined in process)
+◈ Ignored .env file env var: ASTRA_DB_GRAPHQL_URL_PLAYGROUND (defined in process)
+◈ Ignored site settings env var: ASTRA_DB_GRAPHQL_URL_PLAYGROUND (defined in process)
+◈ Ignored .env file env var: ASTRA_DB_GRAPHQL_URL_SCHEMA (defined in process)
+◈ Ignored site settings env var: ASTRA_DB_GRAPHQL_URL_SCHEMA (defined in process)
+◈ Ignored .env file env var: ASTRA_DB_ID (defined in process)
+◈ Ignored site settings env var: ASTRA_DB_ID (defined in process)
+◈ Ignored .env file env var: ASTRA_DB_KEYSPACE (defined in process)
+◈ Ignored site settings env var: ASTRA_DB_KEYSPACE (defined in process)
+◈ Ignored .env file env var: ASTRA_DB_REGION (defined in process)
+◈ Ignored site settings env var: ASTRA_DB_REGION (defined in process)
+◈ Ignored .env file env var: ASTRA_DB_REST_URL (defined in process)
+◈ Ignored site settings env var: ASTRA_DB_REST_URL (defined in process)
+◈ Ignored .env file env var: ASTRA_DB_REST_URL_SWAGGER (defined in process)
+◈ Ignored site settings env var: ASTRA_DB_REST_URL_SWAGGER (defined in process)
+◈ Ignored .env file env var: ASTRA_DB_SECURE_BUNDLE_PATH (defined in process)
+◈ Ignored site settings env var: ASTRA_DB_SECURE_BUNDLE_PATH (defined in process)
+◈ Ignored .env file env var: ASTRA_DB_SECURE_BUNDLE_URL (defined in process)
+◈ Ignored site settings env var: ASTRA_DB_SECURE_BUNDLE_URL (defined in process)
+◈ Ignored .env file env var: ASTRA_ORG_ID (defined in process)
+◈ Ignored site settings env var: ASTRA_ORG_ID (defined in process)
+◈ Ignored .env file env var: ASTRA_ORG_NAME (defined in process)
+◈ Ignored site settings env var: ASTRA_ORG_NAME (defined in process)
+◈ Ignored .env file env var: ASTRA_ORG_TOKEN (defined in process)
+◈ Ignored site settings env var: ASTRA_ORG_TOKEN (defined in process)
+◈ Loaded function getAllTags http://localhost:8888/.netlify/functions/getAllTags.
+◈ Loaded function getCategory http://localhost:8888/.netlify/functions/getCategory.
+◈ Loaded function getReadme http://localhost:8888/.netlify/functions/getReadme.
+◈ Loaded function getTags http://localhost:8888/.netlify/functions/getTags.
+◈ Loaded function getVideos http://localhost:8888/.netlify/functions/getVideos.
+◈ Loaded function getWorkshops http://localhost:8888/.netlify/functions/getWorkshops.
+◈ Functions server is listening on 64898
+◈ Setting up local development server
+​
+────────────────────────────────────────────────────────────────
+  Netlify Build                                                 
+────────────────────────────────────────────────────────────────
+​
+❯ Version
+  @netlify/build 28.4.5
+​
+❯ Flags
+  {}
+​
+❯ Current directory
+  /Users/kirstenhunter/src/tagtailwind
+​
+❯ Config file
+  /Users/kirstenhunter/src/tagtailwind/netlify.toml
+​
+❯ Context
+  dev
+​
+────────────────────────────────────────────────────────────────
+  1. Run command for local development                          
+────────────────────────────────────────────────────────────────
+​
+◈ Starting Netlify Dev with Create React App
+
+> tailwind-gallery@0.0.1 start
+> react-scripts --openssl-legacy-provider start
+
+Starting the development server...
+
+Compiled successfully!
+
+You can now view tailwind-gallery in the browser.
+
+  Local:            http://localhost:3000
+  On Your Network:  http://172.20.20.20:3000
+
+Note that the development build is not optimized.
+To create a production build, use npm run build.
+
+webpack compiled successfully
+​
+(dev.command completed in 6.1s)
+
+   ┌─────────────────────────────────────────────────┐
+   │                                                 │
+   │   ◈ Server now ready on http://localhost:8888   │
+   │                                                 │
+   └─────────────────────────────────────────────────┘
+
+Request from ::1: GET /.netlify/functions/getCategory?tag=workshop
+Request from ::1: GET /.netlify/functions/getCategory?tag=starters
+Request from ::1: GET /.netlify/functions/getCategory?tag=all
+Request from ::1: GET /.netlify/functions/getCategory?tag=apps
+Request from ::1: GET /.netlify/functions/getCategory?tag=tools
+Request from ::1: GET /.netlify/functions/getVideos
+Response with status 200 in 396 ms.
+Request from ::1: GET /.netlify/functions/getAllTags
+Response with status 200 in 396 ms.
+Response with status 200 in 489 ms.
+Response with status 200 in 802 ms.
+Response with status 200 in 772 ms.
+Response with status 400 in 840 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-graphql-netflix
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-introduction-to-nosql
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-appdev-week1-todolist
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-intro-to-graphql
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-bootcamp-fullstack-apps-with-cassandra
+Response with status 200 in 335 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=KillrVideo-killrvideo-java
+Response with status 200 in 437 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-social-media-tiktok
+Response with status 200 in 525 ms.
+Response with status 200 in 534 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-ecommerce-app
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-spring-stargate
+Response with status 200 in 615 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-spring-reactive
+Response with status 200 in 371 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-spring-data-starter
+Response with status 200 in 334 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-spring-data-cassandra
+Response with status 200 in 663 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-battlestax
+Response with status 200 in 538 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=KillrVideo-killrvideo-python
+Response with status 200 in 647 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=KillrVideo-killrvideo-nodejs
+Response with status 200 in 743 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-todo-astra-jamstack-netlify
+Response with status 400 in 332 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-todo-native-mobile
+Response with status 200 in 307 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-java-cassandra-driver-from3x-to4x
+Response with status 200 in 359 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-cassandra-data-modeling
+Response with status 200 in 329 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-vuejs
+Response with status 200 in 324 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-astra-netflix
+Response with status 200 in 477 ms.
+Response with status 200 in 460 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-k8ssandra
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-intro-quarkus-cassandra
+Response with status 200 in 473 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-cassandra-fundamentals
+Response with status 200 in 358 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Academy-workshop-cassandra-certification
+Response with status 200 in 546 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-spring-petclinic-reactive
+Response with status 200 in 319 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-sql-to-nosql-migration
+Response with status 200 in 300 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-storage-attached-indexes
+Response with status 200 in 295 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=KillrVideo-killrvideo-csharp
+Response with status 200 in 491 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=msmygit-dse-titbits
+Response with status 200 in 379 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-cassandra-application-development
+Response with status 200 in 787 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-introduction-to-machine-learning
+Response with status 200 in 293 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-your-k8s-to-cloud
+Response with status 200 in 473 ms.
+Response with status 200 in 292 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-battlestax
+Request from ::1: GET /.netlify/functions/getReadme?slug=ds-steven-matison-astra-ansibile-demo
+Response with status 200 in 300 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-nosqlbench
+Response with status 400 in 291 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-ai-as-api
+Response with status 200 in 379 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-streaming-game
+Response with status 200 in 293 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-astra-tik-tok
+Response with status 200 in 306 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-getting-started-with-astra-python
+Response with status 200 in 278 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-betterreads
+Response with status 200 in 470 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-astra-next.js-starter
+Response with status 200 in 281 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-getting-started-with-astra-java
+Response with status 200 in 565 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-java-framework-compare
+Response with status 200 in 661 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-astra-gatsbyjs-starter
+Response with status 200 in 282 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-astra-loom
+Response with status 200 in 291 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-intro-streaming-and-cdc
+Response with status 200 in 471 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-dsbulk-to-astra
+Response with status 400 in 283 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-google-cloud-functions-nodejs
+Response with status 200 in 282 ms.
+Response with status 200 in 291 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-python-website-scraper
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-realtime-data-pipelines
+Response with status 200 in 283 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-streaming-graph-quine
+Response with status 200 in 303 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-spring-quarkus-micronaut-cassandra
+Response with status 200 in 285 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-astra-spark-migration
+Response with status 200 in 294 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-astra-nextjs-tutorial
+Response with status 200 in 4831 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=datastaxdevs-workshop-IOS-Swift-Astra
+Response with status 200 in 380 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-aws-lambda-nodejs
+Response with status 200 in 279 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-glitch-astra-starter
+Response with status 200 in 566 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-rpg-astra
+Response with status 200 in 294 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-astra-nodejs-starter
+Response with status 200 in 286 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-nf-data-explorer
+Response with status 200 in 380 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-telco-billing-app
+Response with status 200 in 584 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-astra-ide-plugin
+Response with status 200 in 288 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-getting-started-with-astra-csharp
+Response with status 200 in 301 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-azure-functions-nodejs
+Response with status 200 in 293 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-Astra101Java
+Response with status 200 in 293 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-doom-patrol
+Response with status 200 in 295 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-fastsite-console
+Response with status 200 in 283 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-todo-native-mobile
+Response with status 200 in 287 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-django-cassandra-blog
+Response with status 200 in 290 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-astra-nuxtjs-nestjs
+Response with status 200 in 293 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-betterreads-webapp
+Response with status 200 in 288 ms.
+Request from ::1: GET /.netlify/functions/getReadme?slug=DataStax-Examples-weatherapp
+Response with status 200 in 296 ms.
+Response with status 200 in 288 ms.
+Response with status 200 in 286 ms.
+Response with status 200 in 287 ms.
+Response with status 200 in 285 ms.
+Response with status 200 in 279 ms.
