@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^12.6.3",
     "axios": "^0.21.1",
     "dompurify": "^2.4.3",
+    "dotenv": "^16.0.3",
     "faker": "^5.3.1",
     "html-react-parser": "^3.0.7",
     "mdb-react-ui-kit": "^3.0.0",

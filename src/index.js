@@ -17,6 +17,7 @@ import axios from 'axios'
 
 
 const App = () => {
+  const [results, setResults] = useState({})
   const [tagset, setTags] = useState(null)
   const [filters, setFilters] = useState([]);
   const [samples, setSamples] = useState(null)
@@ -24,31 +25,58 @@ const App = () => {
   const [starters, setStarters] = useState(null)
   const [workshops, setWorkshops] = useState(null)
   const [home, setHome] = useState(null)
+  const [searchString, setSearchString] = useState('')
   const [slugs, setSlugs] = useState([])
 
+
   const fetchHomeApps = async (filterlist) => {
-    const results = await axios.get('/.netlify/functions/getCategory?tag=all')
-    setHome(filterApps(results.data[0].all.apps))
+    let temp = results
+    if (home === null) {
+      const results = await axios.get('/.netlify/functions/getCategory?tag=all')
+      temp["home"] = results.data[0].all.apps
+      setResults(temp)
+    }
+    setHome(filterApps(results["home"]))
   }
 
   const fetchWorkshops = async (filterlist) => {
-    const results = await axios.get('/.netlify/functions/getCategory?tag=workshop')
-    setWorkshops(filterApps(results.data[0].workshop.apps))
+    let temp = results
+    if (workshops === null) {
+      const results = await axios.get('/.netlify/functions/getCategory?tag=workshop')
+      temp["workshops"] = results.data[0].workshop.apps
+      setResults(temp)
+    }
+    setWorkshops(filterApps(results["workshops"]))
   }
 
   const fetchStarters = async (filterlist) => {
-    const results = await axios.get('/.netlify/functions/getCategory?tag=starters')
-    setStarters(filterApps(results.data[0].starters.apps))
+    let temp = results
+    if (starters === null) {
+      const results = await axios.get('/.netlify/functions/getCategory?tag=starters')
+      temp["starters"] = results.data[0].starters.apps
+      setResults(temp)
+    }
+    setStarters(filterApps(results["starters"]))
   }
 
   const fetchSamples = async (filterlist) => {
-    const results = await axios.get('/.netlify/functions/getCategory?tag=apps')
-    setSamples(filterApps(results.data[0].apps.apps))
+    let temp = results
+    if (samples === null) {
+      const results = await axios.get('/.netlify/functions/getCategory?tag=building-sample-apps')
+      temp["samples"] = results.data[0]["building-sample-apps"].apps
+      setResults(temp)
+    }
+    setSamples(filterApps(results["samples"]))
   }
 
   const fetchDataTools = async (filterlist) => {
-    const results = await axios.get('/.netlify/functions/getCategory?tag=tools')
-    setDataTools(filterApps(results.data[0].tools.apps))
+    let temp = results
+    if (datatools === null) {
+      const results = await axios.get('/.netlify/functions/getCategory?tag=tools')
+      temp["datatools"] = results.data[0].tools.apps
+      setResults(temp)
+    }
+    setDataTools(filterApps(results["datatools"]))
   }
 
   const fetchData = async () => {
@@ -156,8 +184,7 @@ const App = () => {
     fetchDataTools(filterlist)
     fetchData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters])
-
+  }, [filters, searchString])
 
   useEffect(() => {
     console.log("Re-rendering")
@@ -208,13 +235,33 @@ const App = () => {
     if (filters === []) {
       return filterapps
     }
+
     let newapps = []
+    // eslint-disable-next-line
     apploop:
     for (const app of filterapps) {
       for (const tag of filters) {
         if (app.tags.indexOf(tag) === -1) {
           continue apploop
         }
+      }
+      if (searchString !== '') {
+        const url = app["urls"]["github"][0]
+        const owner = url.split("/")[3]
+        const repo = url.split("/")[4]
+        const slug = owner + "-" + repo
+
+        const readme = JSON.stringify(slugs[slug])
+
+        console.log(searchString + "is searchString")
+        if (readme) {
+          const appReadMe = readme.toLowerCase()
+          if (!appReadMe.includes(searchString.toLowerCase())){
+            continue apploop
+          }
+        }
+        console.log(readme)
+        console.log(searchString)
       }
       newapps.push(app)
     }
@@ -234,6 +281,8 @@ const App = () => {
               filteredTag={filteredTag}
               showHide={showHide}
               resetFilters={resetFilters}
+              searchString={searchString}
+              setSearchString={setSearchString}
             />
           </div>
           <div name="gallery cards" className='col-9'>

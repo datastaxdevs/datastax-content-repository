@@ -35,10 +35,8 @@ const Modal = (props) => {
     // Read in the README, just once per app, for the modals to show.
     const getVideo = async (app) => {
         let slugobjs = slugs
-        console.log("Checking out "+ app["name"])
         
         if (!app["urls"]["youtube"]) {
-            console.log("NO youtube" + JSON.stringify(app["urls"]["youtube"]))
             return
         } else {
             const url = app["urls"]["youtube"][0]
@@ -73,7 +71,6 @@ const Modal = (props) => {
             if (slug === "undefined-undefined") { return }
             if (slugobjs[slug]){
                 application["readme"] = slugobjs[slug]
-                console.log("Already in slugs")
                 return
             }
             try {
@@ -85,7 +82,6 @@ const Modal = (props) => {
                 slugobjs[slug] = parse(cleanHTML)
                 setSlugs(slugobjs);
             } catch (e) {
-                console.log("No README for " + slug)
                 slugobjs[slug] = ' '
                 setSlugs(slugobjs);
             }
