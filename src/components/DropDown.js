@@ -15,7 +15,7 @@ const DropDown = (props) => {
         } else if (key === "gitpod") {
             urls.push({ "display": "Open in IDE", "url": application.urls["gitpod"] })
         } else if (key === "youtube") {
-            urls.push({ "display": "Watch the Video", "url": application.urls["youtube"] })
+            urls.push({ "display": "Watch the Video", "url": application.urls["youtube"][0] })
         } else if (key === "demo") {
             urls.push({ "display": "View the Demo", "url": application.urls["demo"] })
         }

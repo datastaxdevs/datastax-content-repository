@@ -26,6 +26,7 @@ const App = () => {
   const [workshops, setWorkshops] = useState(null)
   const [home, setHome] = useState(null)
   const [searchString, setSearchString] = useState('')
+  const [monthFilter, setMonthFilter] = useState("0")
   const [slugs, setSlugs] = useState([])
 
 
@@ -172,6 +173,7 @@ const App = () => {
     setFrame(false)
     setUse(false)
     setOther(false)
+    setMonthFilter("0")
     setFilters([])
   }
 
@@ -184,7 +186,7 @@ const App = () => {
     fetchDataTools(filterlist)
     fetchData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters, searchString])
+  }, [filters, searchString, monthFilter])
 
   useEffect(() => {
     console.log("Re-rendering")
@@ -242,6 +244,7 @@ const App = () => {
     for (const app of filterapps) {
       for (const tag of filters) {
         if (app.tags.indexOf(tag) === -1) {
+          // eslint-disable-next-line
           continue apploop
         }
       }
@@ -257,11 +260,18 @@ const App = () => {
         if (readme) {
           const appReadMe = readme.toLowerCase()
           if (!appReadMe.includes(searchString.toLowerCase())){
+            // eslint-disable-next-line
             continue apploop
           }
         }
-        console.log(readme)
-        console.log(searchString)
+      }
+      
+      if (monthFilter !== "0") {
+        if (parseInt(app.months) >= parseInt(monthFilter)) {
+          console.log("Filtering out " + app.name)
+          // eslint-disable-next-line
+          continue apploop
+        }
       }
       newapps.push(app)
     }
@@ -283,6 +293,8 @@ const App = () => {
               resetFilters={resetFilters}
               searchString={searchString}
               setSearchString={setSearchString}
+              monthFilter={monthFilter}
+              setMonthFilter={setMonthFilter}
             />
           </div>
           <div name="gallery cards" className='col-9'>

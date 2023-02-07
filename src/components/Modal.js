@@ -11,6 +11,7 @@ const Modal = (props) => {
     const showModal = props.showModal
     let slugs = props.slugs
     let setSlugs = props.setSlugs
+    let setAge = props.setAge
 
 
      // Esc or any click closes the modal
@@ -73,6 +74,7 @@ const Modal = (props) => {
                 application["readme"] = slugobjs[slug]
                 return
             }
+            
             try {
                 const results = await axios.get('/.netlify/functions/getReadme?slug=' + slug)
                 const cleanHTML = DOMPurify.sanitize(results.data, {
@@ -134,7 +136,7 @@ const Modal = (props) => {
 
                                                 </div>
                                                 <dt className="sr-only">Tags:</dt>
-                                                <dd className="text-sm text-gray-500">
+                                                <dd className="text-sm text-gray-500 p-2">
                                                     {application?.tags?.map((tagname, index) => (
 
                                                         <button key={index} className={props.filteredTag(tagname) ? 'btn btn-primary btn-sm' : 'btn btn-outline-primary btn-sm'}

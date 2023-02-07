@@ -8,6 +8,14 @@ const LeftBar = (props) => {
 
   // group the tags by type, to create the groupings in the left pane.
 
+
+  const ageOptions = [
+    { name: 'All', value: "0" },
+    { name: '3m', value: "3" },
+    { name: '6m', value: "6" },
+    { name: '1y', value: "12" },
+  ]
+
   let languages = []
   let frameworks = []
   let apis = []
@@ -42,148 +50,163 @@ const LeftBar = (props) => {
     setSearchString(e.target.value)
   };
 
-  // Dropdown menus for each of the tag grouping to open/close the section.
-  // Tags selected in cards will also open the appropriate section
+  const filterAge = (e) => {
+    console.log(JSON.stringify(e.target.value))
+    props.setMonthFilter(e.target.value)
+  }
 
   return (
     <>
       {props.tagset && (
         <div className="flex flex-column justify-center">
           <div className="flex justify-center">
-            <div className="mb-3 xl:w-96">
-              <div className="input-group relative flex flex-wrap items-stretch w-full mb-4">
-                <input type="search" 
-                id="default-input"
-                value={searchString}
-                onChange={filter}
-                width="200px"
-                className="input form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Search" aria-label="Search" aria-describedby="button-addon2"/>
-                
+            <div className="mb-1 xl:w-96">
+              <div className="input-group relative flex flex-wrap items-stretch w-full mb-1">
+                <input type="search"
+                  id="default-input"
+                  value={searchString}
+                  onChange={filter}
+                  width="200px"
+                  className="input form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" />
+
               </div>
             </div>
           </div>
+          <span>Maximum age of application:</span>
+          <div className="btn-group justify-between space-x-8" role="group" aria-label="Basic example">
+            {ageOptions.map((option) => (
+                <button key={option.name} 
+                        value={option.value} 
+                        onClick={filterAge} 
+                        className='inline-flex items-center justify-between rounded border border-transparent bg-indigo-500 px-2.5 py-1.5 text-sm font-heavy text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' 
+                >
+                  {option.name}
+                  </button>)
+              )}
+          </div>
           <button type="button" className="reset-button" onClick={() => { props.resetFilters() }}> <h3 align="left"><b>Reset Filters</b></h3></button>
+
 
           <hr />
           <h4>Languages <button type="button" onClick={() => { props.showHide.setLang(!props.showHide.showLang) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
           </h4>
           {
-    props.showHide.showLang && <span name="languages">
-      {
-        languages.map(
-          (tag, index) =>
-            <button key={index} className={props.filteredTag(tag.name) ?
-              'inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-center text-xs font-bold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' :
-              'inline-flex items-center rounded border border-transparent bg-indigo-100 px-2.5 py-1.5 text-center text-xs font-bold text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'}
-              onClick=
-              {(e) => props.onClick(tag.name, e)}
-            >{tag.name}</button>
+            props.showHide.showLang && <span name="languages">
+              {
+                languages.map(
+                  (tag, index) =>
+                    <button key={index} className={props.filteredTag(tag.name) ?
+                      'inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-center text-xs font-bold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' :
+                      'inline-flex items-center rounded border border-transparent bg-indigo-100 px-2.5 py-1.5 text-center text-xs font-bold text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'}
+                      onClick=
+                      {(e) => props.onClick(tag.name, e)}
+                    >{tag.name}</button>
 
-        )}
-    </span>
-  }
-  <h4>Technology <button type="button" onClick={() => { props.showHide.setTech(!props.showHide.showTech) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
-  </h4>
-  {
-    props.showHide.showTech && <span name="technology">
-      {
-        technology.map(
-          (tag, index) =>
-            <button key={index} className={props.filteredTag(tag.name) ?
-              'inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-center text-xs font-bold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' :
-              'inline-flex items-center rounded border border-transparent bg-indigo-100 px-2.5 py-1.5 text-center text-xs font-bold text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'}
-              onClick=
-              {(e) => props.onClick(tag.name, e)}
-            >{tag.name}</button>
+                )}
+            </span>
+          }
+          <h4>Technology <button type="button" onClick={() => { props.showHide.setTech(!props.showHide.showTech) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
+          </h4>
+          {
+            props.showHide.showTech && <span name="technology">
+              {
+                technology.map(
+                  (tag, index) =>
+                    <button key={index} className={props.filteredTag(tag.name) ?
+                      'inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-center text-xs font-bold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' :
+                      'inline-flex items-center rounded border border-transparent bg-indigo-100 px-2.5 py-1.5 text-center text-xs font-bold text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'}
+                      onClick=
+                      {(e) => props.onClick(tag.name, e)}
+                    >{tag.name}</button>
 
-        )}
-    </span>
-  }
-  <h4>Integrations <button type="button" onClick={() => { props.showHide.setInt(!props.showHide.showInt) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
-  </h4>
-  {
-    props.showHide.showInt && <span name="integrations">
-      {
-        integrations.map(
-          (tag, index) =>
-            <button key={index} className={props.filteredTag(tag.name) ?
-              'inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-center text-xs font-bold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' :
-              'inline-flex items-center rounded border border-transparent bg-indigo-100 px-2.5 py-1.5 text-center text-xs font-bold text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'}
-              onClick=
-              {(e) => props.onClick(tag.name, e)}
-            >{tag.name}</button>
+                )}
+            </span>
+          }
+          <h4>Integrations <button type="button" onClick={() => { props.showHide.setInt(!props.showHide.showInt) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
+          </h4>
+          {
+            props.showHide.showInt && <span name="integrations">
+              {
+                integrations.map(
+                  (tag, index) =>
+                    <button key={index} className={props.filteredTag(tag.name) ?
+                      'inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-center text-xs font-bold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' :
+                      'inline-flex items-center rounded border border-transparent bg-indigo-100 px-2.5 py-1.5 text-center text-xs font-bold text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'}
+                      onClick=
+                      {(e) => props.onClick(tag.name, e)}
+                    >{tag.name}</button>
 
-        )}
-    </span>
-  }
-  <h4>APIs <button type="button" onClick={() => { props.showHide.setAPI(!props.showHide.showAPI) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
-  </h4>
-  {
-    props.showHide.showAPI && <span name="apis">
-      {
-        apis.map(
-          (tag, index) =>
-            <button key={index} className={props.filteredTag(tag.name) ?
-              'inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-center text-xs font-bold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' :
-              'inline-flex items-center rounded border border-transparent bg-indigo-100 px-2.5 py-1.5 text-center text-xs font-bold text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'}
-              onClick=
-              {(e) => props.onClick(tag.name, e)}
-            >{tag.name}</button>
+                )}
+            </span>
+          }
+          <h4>APIs <button type="button" onClick={() => { props.showHide.setAPI(!props.showHide.showAPI) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
+          </h4>
+          {
+            props.showHide.showAPI && <span name="apis">
+              {
+                apis.map(
+                  (tag, index) =>
+                    <button key={index} className={props.filteredTag(tag.name) ?
+                      'inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-center text-xs font-bold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' :
+                      'inline-flex items-center rounded border border-transparent bg-indigo-100 px-2.5 py-1.5 text-center text-xs font-bold text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'}
+                      onClick=
+                      {(e) => props.onClick(tag.name, e)}
+                    >{tag.name}</button>
 
-        )}
-    </span>
-  }
-  <h4>Frameworks <button type="button" onClick={() => { props.showHide.setFrame(!props.showHide.showFrame) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
-  </h4>
-  {
-    props.showHide.showFrame && <span name="frameworks">
-      {
-        frameworks.map(
-          (tag, index) =>
-            <button key={index} className={props.filteredTag(tag.name) ?
-              'inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-center text-xs font-bold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' :
-              'inline-flex items-center rounded border border-transparent bg-indigo-100 px-2.5 py-1.5 text-center text-xs font-bold text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'}
-              onClick=
-              {(e) => props.onClick(tag.name, e)}
-            >{tag.name}</button>
+                )}
+            </span>
+          }
+          <h4>Frameworks <button type="button" onClick={() => { props.showHide.setFrame(!props.showHide.showFrame) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
+          </h4>
+          {
+            props.showHide.showFrame && <span name="frameworks">
+              {
+                frameworks.map(
+                  (tag, index) =>
+                    <button key={index} className={props.filteredTag(tag.name) ?
+                      'inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-center text-xs font-bold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' :
+                      'inline-flex items-center rounded border border-transparent bg-indigo-100 px-2.5 py-1.5 text-center text-xs font-bold text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'}
+                      onClick=
+                      {(e) => props.onClick(tag.name, e)}
+                    >{tag.name}</button>
 
-        )}
-    </span>
-  }
-  <h4>Use Cases <button type="button" onClick={() => { props.showHide.setUse(!props.showHide.showUse) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
-  </h4>
-  {
-    props.showHide.showUse && <span name="usecases">
-      {
-        usecases.map(
-          (tag, index) =>
-            <button key={index} className={props.filteredTag(tag.name) ?
-              'inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-center text-xs font-bold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' :
-              'inline-flex items-center rounded border border-transparent bg-indigo-100 px-2.5 py-1.5 text-center text-xs font-bold text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'}
-              onClick=
-              {(e) => props.onClick(tag.name, e)}
-            >{tag.name}</button>
+                )}
+            </span>
+          }
+          <h4>Use Cases <button type="button" onClick={() => { props.showHide.setUse(!props.showHide.showUse) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
+          </h4>
+          {
+            props.showHide.showUse && <span name="usecases">
+              {
+                usecases.map(
+                  (tag, index) =>
+                    <button key={index} className={props.filteredTag(tag.name) ?
+                      'inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-center text-xs font-bold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' :
+                      'inline-flex items-center rounded border border-transparent bg-indigo-100 px-2.5 py-1.5 text-center text-xs font-bold text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'}
+                      onClick=
+                      {(e) => props.onClick(tag.name, e)}
+                    >{tag.name}</button>
 
-        )}
-    </span>
-  }
-  <h4>Other <button type="button" onClick={() => { props.showHide.setOther(!props.showHide.showOther) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
-  </h4>
-  {
-    props.showHide.showOther && <span name="other">
-      {
-        other.map(
-          (tag, index) =>
-            <button key={index} className={props.filteredTag(tag.name) ?
-              'inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-center text-xs font-bold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' :
-              'inline-flex items-center rounded border border-transparent bg-indigo-100 px-2.5 py-1.5 text-center text-xs font-bold text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'}
-              onClick=
-              {(e) => props.onClick(tag.name, e)}
-            >{tag.name}</button>
+                )}
+            </span>
+          }
+          <h4>Other <button type="button" onClick={() => { props.showHide.setOther(!props.showHide.showOther) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
+          </h4>
+          {
+            props.showHide.showOther && <span name="other">
+              {
+                other.map(
+                  (tag, index) =>
+                    <button key={index} className={props.filteredTag(tag.name) ?
+                      'inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-center text-xs font-bold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' :
+                      'inline-flex items-center rounded border border-transparent bg-indigo-100 px-2.5 py-1.5 text-center text-xs font-bold text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'}
+                      onClick=
+                      {(e) => props.onClick(tag.name, e)}
+                    >{tag.name}</button>
 
-        )}
-    </span>
-  }
+                )}
+            </span>
+          }
 
         </div >
       )
