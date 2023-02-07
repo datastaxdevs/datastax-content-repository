@@ -2,8 +2,6 @@ import React, {useState} from 'react'
 
 import Modal from './Modal'
 import DropDown from './DropDown'
-const moment = require('moment');
-const preciseDiff = require('moment-precise-range-plugin');
   
 const Card = (props) => {
   let application = props.application
@@ -44,7 +42,7 @@ const Card = (props) => {
             </div>
            
             <dt className="sr-only">Tags:</dt>
-            <dd className="text-sm text-gray-500">
+            <dd className="text-sm text-gray-500 p-2">
               {application?.tags?.map((tagname, index) => (
 
                 <button key={index} className={props.filteredTag(tagname) ? 'btn btn-primary btn-sm' : 'btn btn-outline-primary btn-sm'}
