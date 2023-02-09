@@ -9,8 +9,33 @@
     text-align: left !important;
 }
 
+.readmemd h2 {
+    padding-bottom: 0.3em;
+    font-size: 1.5em;
+    border-bottom: 1px solid;
+    margin-top: 10px;
+}
+
+.readmemd h1 {
+    padding-bottom: 0.3em;
+    font-size: 2em;
+    border-bottom: 1px solid
+}
+
 .readmemd img{
     width: 200 !important;
+    display: inline;
+    text-align: center;
+}
+
+.readmemd ul {
+    list-style: disc outside;
+    padding-left: 25px;
+}
+
+.readmemd ol {
+    list-style-type:decimal;
+    padding-left: 25px;
 }
 
 .reset-button h3 {

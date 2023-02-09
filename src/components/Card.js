@@ -10,7 +10,7 @@ const Card = (props) => {
   return (
     <div className='d-flex align-items-center mt-2 flex-wrap flex-col align-items-start'>
       <div key={application.name}
-        className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow h-full">
+        className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow h-full w-full">
         <div className="flex flex-1 flex-col p-8">
           <div className="heroimage"
             onClick={() => setShowModal(true)}
