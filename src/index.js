@@ -54,7 +54,6 @@ const App = () => {
     let temp = results
     if (starters === null) {
       const results = await axios.get('/.netlify/functions/getCategory?tag=starter')
-      console.log("RESULTS" + JSON.stringify(results))
       temp["starter"] = results.data[0].starter.apps
 
       setResults(temp)
@@ -77,6 +76,9 @@ const App = () => {
     let newtags = Object.values(allTags.data);
     newtags.sort((a, b) => b.count - a.count);
     setTags(Object.values(newtags))
+    for (let tag in newtags) {
+
+    }
     await setSections(newtags)
   }
 
@@ -125,15 +127,16 @@ const App = () => {
 
   const setSections = async (tagset) => {
     let sections = {}
-
     for (let tag in tagset) {
       let tagobj = tagset[tag]
+
       if (["javascript", "csharp", "java", "nodejs", "python", "c#", "scala", "ios", "android"].includes(tagobj.name)) {
         languages.push(tagobj)
         sections[tagset[tag]["name"]] = "languages"
       } else if (["doc api", "graphql api", "rest api", "gprc api", "devops-apis", "json-api"].includes(tagobj.name)) {
         apis.push(tagobj)
         sections[tagset[tag]["name"]] = "apis"
+
       } else if (["workshop", "apps", "starters", "dev", "tools", "examples"].includes(tagobj.name)) {
         secret.push(tagobj)
       } else if (["selenium", "react", "spring", "mongoose", "django", "nextjs", "nestjs", "angular", "redux", "webflux", "elixir", "serverless-framework", "streaming", "video"].includes(tagobj.name)) {
@@ -153,6 +156,7 @@ const App = () => {
         sections[tagset[tag]["name"]] = "other"
       }
     }
+
     setSection(sections)
 
   }

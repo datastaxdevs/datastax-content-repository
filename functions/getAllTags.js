@@ -7,6 +7,7 @@ exports.handler = async (event, context) => {
 
   async function findTagsRecursive(pagestate, alltags = []) {
     const tags = await getCollection();
+    let res;
 
     if (pagestate) {
       res = await tags.find({}, { "page-state": pagestate });

@@ -8,14 +8,6 @@ const LeftBar = (props) => {
 
   // group the tags by type, to create the groupings in the left pane.
 
-
-  const ageOptions = [
-    { name: 'All', value: "0" },
-    { name: '3m', value: "3" },
-    { name: '6m', value: "6" },
-    { name: '1y', value: "12" },
-  ]
-
   let languages = []
   let frameworks = []
   let apis = []
@@ -29,13 +21,13 @@ const LeftBar = (props) => {
     let tagobj = props.tagset[tag]
     if (["javascript", "csharp", "java", "nodejs", "python", "c#", "scala", "ios", "android"].includes(tagobj.name)) {
       languages.push(tagobj)
-    } else if (["doc api", "graphql api", "rest api", "gprc api", "devops-apis"].includes(tagobj.name)) {
+    } else if (["doc api", "graphql api", "rest api", "gprc api", "devops-apis", "json-api"].includes(tagobj.name)) {
       apis.push(tagobj)
     } else if (["workshop", "apps", "starters", "dev", "tools", "examples"].includes(tagobj.name)) {
       secret.push(tagobj)
-    } else if (["selenium", "react", "spring", "django", "nextjs", "nestjs", "angular", "redux", "webflux", "elixir", "serverless-framework", "streaming", "video"].includes(tagobj.name)) {
+    } else if (["selenium", "react", "spring", "django", "nextjs", "mongoose", "nestjs", "angular", "redux", "webflux", "elixir", "serverless-framework", "streaming", "video"].includes(tagobj.name)) {
       frameworks.push(tagobj)
-    } else if (["kubernetes", "k8ssandra", "cql", "nosql", "astradb", "dse", "cassandra", "fastapi", "datastax", "keyspaces"].includes(tagobj.name)) {
+    } else if (["kubernetes", "k8ssandra", "cql", "nosql", "vector", "astradb", "dse", "cassandra", "fastapi", "datastax", "keyspaces"].includes(tagobj.name)) {
       technology.push(tagobj)
     } else if (["eddiehub", "jamstack", "netlify", "gitpod", "template", "google-cloud"].includes(tagobj.name)) {
       integrations.push(tagobj)
@@ -74,7 +66,7 @@ const LeftBar = (props) => {
           </div>
           <button type="button" className="reset-button" onClick={() => { props.resetFilters() }}> <h3 align="left"><b>Reset Filters</b></h3></button>
 
-           <hr />
+          <hr />
           <h4>Languages <button type="button" onClick={() => { props.showHide.setLang(!props.showHide.showLang) }}> <ChevronDownIcon className=" h-5 w-3 " /></button>
           </h4>
           {
@@ -194,21 +186,6 @@ const LeftBar = (props) => {
                 )}
             </span>
           }
-                   <span className="pt-2">Maximum age of application:</span>
-          <div className="btn-group justify-between space-x-1" role="group" aria-label="Basic example">
-            {ageOptions.map((option) => (
-                <button key={option.name} 
-                        value={option.value} 
-                        onClick={filterAge} 
-                        className='inline-flex p-1 items-center justify-between rounded border border-transparent bg-indigo-500 px-2.5 py-1.5 text-sm font-heavy text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' 
-                >
-                  {option.name}
-                  </button>)
-              )}
-          </div>
-
-
-
         </div >
       )
       }
