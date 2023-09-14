@@ -53,24 +53,13 @@ const App = () => {
   const fetchStarters = async (filterlist) => {
     let temp = results
     if (starters === null) {
-      const results = await axios.get('/.netlify/functions/getCategory?tag=starters')
+      const results = await axios.get('/.netlify/functions/getCategory?tag=starter')
       console.log("RESULTS" + JSON.stringify(results))
-      temp["starters"] = results.data[0].starters.apps
+      temp["starter"] = results.data[0].starter.apps
 
       setResults(temp)
     }
-    setStarters(filterApps(results["starters"]))
-  }
-
-  const fetchSamples = async (filterlist) => {
-    let temp = results
-    if (samples === null) {
-      const results = await axios.get('/.netlify/functions/getCategory?tag=building-sample-apps')
-      temp["samples"] = results.data[0]["building-sample-apps"].apps
-      console.log("Samples is " + JSON.stringify(temp["samples"]))
-      setResults(temp)
-    }
-    setSamples(filterApps(results["samples"]))
+    setStarters(filterApps(results["starter"]))
   }
 
   const fetchDataTools = async (filterlist) => {
@@ -185,7 +174,6 @@ const App = () => {
     fetchWorkshops(filterlist)
     fetchStarters(filterlist)
     fetchHomeApps(filterlist)
-    fetchSamples(filterlist)
     fetchDataTools(filterlist)
     fetchData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -333,12 +321,6 @@ const App = () => {
                 tagset={tagset}
                 filteredTag={filteredTag}
                 showHide={showHide}
-                slugs={slugs}
-                setSlugs={setSlugs}
-                filters={filters} onClick={handleFilters} {...props} />} />
-              <Route path="/samples" render={(props) => <SampleApps apps={samples}
-                tagset={tagset}
-                filteredTag={filteredTag} showHide={showHide}
                 slugs={slugs}
                 setSlugs={setSlugs}
                 filters={filters} onClick={handleFilters} {...props} />} />

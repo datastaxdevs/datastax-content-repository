@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 const navigation = [
   { name: 'Home', href: '/' },
   { name: 'Workshops', href: '/workshops' },
-  { name: 'Sample Apps', href: '/apps' },
   { name: 'Starter Apps', href: '/starters' },
   { name: 'Data Tools', href: '/datatools' },
 ]
@@ -14,13 +13,13 @@ export default function Header() {
 
       <div className="flex flex-wrap pl-10 items-center sm:justify-between lg:flex-nowrap">
         <div className="hidden space-x-8 lg:block">
-              {navigation.map((link) => (
-                <Link key={link.href} to={link.href}>
-                <button className="inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-sm font-heavy text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          {navigation.map((link) => (
+            <Link key={link.href} to={link.href}>
+              <button className="inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-sm font-heavy text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 href={link.href}>{link.name}</button>
-                </Link>
-              ))}
-            </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </header>
   )
