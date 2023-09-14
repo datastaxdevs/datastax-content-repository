@@ -54,7 +54,9 @@ const App = () => {
     let temp = results
     if (starters === null) {
       const results = await axios.get('/.netlify/functions/getCategory?tag=starters')
+      console.log("RESULTS" + JSON.stringify(results))
       temp["starters"] = results.data[0].starters.apps
+
       setResults(temp)
     }
     setStarters(filterApps(results["starters"]))
@@ -65,6 +67,7 @@ const App = () => {
     if (samples === null) {
       const results = await axios.get('/.netlify/functions/getCategory?tag=building-sample-apps')
       temp["samples"] = results.data[0]["building-sample-apps"].apps
+      console.log("Samples is " + JSON.stringify(temp["samples"]))
       setResults(temp)
     }
     setSamples(filterApps(results["samples"]))
@@ -243,6 +246,10 @@ const App = () => {
     // eslint-disable-next-line
     apploop:
     for (const app of filterapps) {
+      if (!app["urls"] || !app["urls"]["github"] || app["urls"]["github"].length === 0) {
+        //eslint-disable-next-line
+        continue apploop
+      }
       const url = app["urls"]["github"][0]
       const owner = url.split("/")[3]
       const repo = url.split("/")[4]
@@ -280,74 +287,74 @@ const App = () => {
       }
       newapps.push(app)
       slugdone.push(slug)
+    }
+    newapps.sort((a, b) => b.stargazers - a.stargazers);
+    return newapps
   }
-  newapps.sort((a, b) => b.stargazers - a.stargazers);
-  return newapps
-}
 
-return (
-  <>
+  return (
+    <>
 
-    <HashRouter>
-      <Header />
-      <div className="row">
-        <div name="Leftbar" className='col-2 ml-2'>
-          <LeftBar filters={filters} onClick={handleFilters}
-            tagset={tagset}
-            filteredTag={filteredTag}
-            showHide={showHide}
-            resetFilters={resetFilters}
-            searchString={searchString}
-            setSearchString={setSearchString}
-            monthFilter={monthFilter}
-            setMonthFilter={setMonthFilter}
-          />
+      <HashRouter>
+        <Header />
+        <div className="row">
+          <div name="Leftbar" className='col-2 ml-2'>
+            <LeftBar filters={filters} onClick={handleFilters}
+              tagset={tagset}
+              filteredTag={filteredTag}
+              showHide={showHide}
+              resetFilters={resetFilters}
+              searchString={searchString}
+              setSearchString={setSearchString}
+              monthFilter={monthFilter}
+              setMonthFilter={setMonthFilter}
+            />
+          </div>
+          <div name="gallery cards" className='col-9'>
+            <Switch>
+              <Route path="/workshops"
+                render={(props) =>
+                  <Workshops apps={workshops}
+                    filters={filters} onClick={handleFilters} filteredTag={filteredTag}
+                    tagset={tagset}
+                    showHide={showHide}
+                    slugs={slugs}
+                    setSlugs={setSlugs}
+                    {...props} />} />
+              <Route path="/starters" render={(props) => <StarterApps apps={starters}
+                filters={filters} onClick={handleFilters}
+                tagset={tagset}
+                filteredTag={filteredTag}
+                showHide={showHide}
+                slugs={slugs}
+                setSlugs={setSlugs}
+                {...props} />} ></Route>
+              <Route path="/datatools" render={(props) => <DataTools apps={datatools}
+                tagset={tagset}
+                filteredTag={filteredTag}
+                showHide={showHide}
+                slugs={slugs}
+                setSlugs={setSlugs}
+                filters={filters} onClick={handleFilters} {...props} />} />
+              <Route path="/samples" render={(props) => <SampleApps apps={samples}
+                tagset={tagset}
+                filteredTag={filteredTag} showHide={showHide}
+                slugs={slugs}
+                setSlugs={setSlugs}
+                filters={filters} onClick={handleFilters} {...props} />} />
+              <Route path="/" render={(props) => <Home apps={home} filters={filters}
+                tagset={tagset}
+                filteredTag={filteredTag}
+                showHide={showHide}
+                slugs={slugs}
+                setSlugs={setSlugs}
+                onClick={handleFilters} {...props} />} />
+            </Switch>
+          </div>
         </div>
-        <div name="gallery cards" className='col-9'>
-          <Switch>
-            <Route path="/workshops"
-              render={(props) =>
-                <Workshops apps={workshops}
-                  filters={filters} onClick={handleFilters} filteredTag={filteredTag}
-                  tagset={tagset}
-                  showHide={showHide}
-                  slugs={slugs}
-                  setSlugs={setSlugs}
-                  {...props} />} />
-            <Route path="/starters" render={(props) => <StarterApps apps={starters}
-              filters={filters} onClick={handleFilters}
-              tagset={tagset}
-              filteredTag={filteredTag}
-              showHide={showHide}
-              slugs={slugs}
-              setSlugs={setSlugs}
-              {...props} />} ></Route>
-            <Route path="/datatools" render={(props) => <DataTools apps={datatools}
-              tagset={tagset}
-              filteredTag={filteredTag}
-              showHide={showHide}
-              slugs={slugs}
-              setSlugs={setSlugs}
-              filters={filters} onClick={handleFilters} {...props} />} />
-            <Route path="/samples" render={(props) => <SampleApps apps={samples}
-              tagset={tagset}
-              filteredTag={filteredTag} showHide={showHide}
-              slugs={slugs}
-              setSlugs={setSlugs}
-              filters={filters} onClick={handleFilters} {...props} />} />
-            <Route path="/" render={(props) => <Home apps={home} filters={filters}
-              tagset={tagset}
-              filteredTag={filteredTag}
-              showHide={showHide}
-              slugs={slugs}
-              setSlugs={setSlugs}
-              onClick={handleFilters} {...props} />} />
-          </Switch>
-        </div>
-      </div>
-    </HashRouter>
-  </>
-)
+      </HashRouter>
+    </>
+  )
 }
 export default App
 
