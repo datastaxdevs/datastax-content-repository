@@ -131,15 +131,15 @@ const App = () => {
       if (["javascript", "csharp", "java", "nodejs", "python", "c#", "scala", "ios", "android"].includes(tagobj.name)) {
         languages.push(tagobj)
         sections[tagset[tag]["name"]] = "languages"
-      } else if (["doc api", "graphql api", "rest api", "gprc api", "devops-apis"].includes(tagobj.name)) {
+      } else if (["doc api", "graphql api", "rest api", "gprc api", "devops-apis", "json-api"].includes(tagobj.name)) {
         apis.push(tagobj)
         sections[tagset[tag]["name"]] = "apis"
       } else if (["workshop", "apps", "starters", "dev", "tools", "examples"].includes(tagobj.name)) {
         secret.push(tagobj)
-      } else if (["selenium", "react", "spring", "django", "nextjs", "nestjs", "angular", "redux", "webflux", "elixir", "serverless-framework", "streaming", "video"].includes(tagobj.name)) {
+      } else if (["selenium", "react", "spring", "mongoose", "django", "nextjs", "nestjs", "angular", "redux", "webflux", "elixir", "serverless-framework", "streaming", "video"].includes(tagobj.name)) {
         frameworks.push(tagobj)
         sections[tagset[tag]["name"]] = "frameworks"
-      } else if (["kubernetes", "k8ssandra", "cql", "nosql", "astradb", "dse", "cassandra", "fastapi", "datastax", "keyspaces"].includes(tagobj.name)) {
+      } else if (["kubernetes", "k8ssandra", "cql", "nosql", "vector", "astradb", "dse", "cassandra", "fastapi", "datastax", "keyspaces"].includes(tagobj.name)) {
         technology.push(tagobj)
         sections[tagset[tag]["name"]] = "technology"
       } else if (["eddiehub", "jamstack", "netlify", "gitpod", "template", "google-cloud"].includes(tagobj.name)) {
