@@ -34,8 +34,8 @@
     "start": "react-scripts --openssl-legacy-provider start",
     "build": "tailwind build -i src/input.css -o src/output.css && react-scripts build",
     "build-tw": "tailwind build -i src/input.css -o src/output.css",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "test": "react-scripts --openssl-legacy-provider test",
+    "eject": "react-scripts --openssl-legacy-provider eject",
     "dev": "netlify dev"
   },
   "eslintConfig": {
