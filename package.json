@@ -32,7 +32,7 @@
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
-    "build": "tailwind build -i src/input.css -o src/output.css && react-scripts build",
+    "build": "tailwind build -i src/input.css -o src/output.css && react-scripts --openssl-legacy-provider build",
     "build-tw": "tailwind build -i src/input.css -o src/output.css",
     "test": "react-scripts --openssl-legacy-provider test",
     "eject": "react-scripts --openssl-legacy-provider eject",
