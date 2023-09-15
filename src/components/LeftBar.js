@@ -25,13 +25,13 @@ const LeftBar = (props) => {
       apis.push(tagobj)
     } else if (["workshop", "apps", "starters", "dev", "tools", "examples"].includes(tagobj.name)) {
       secret.push(tagobj)
-    } else if (["selenium", "react", "spring", "django", "nextjs", "mongoose", "nestjs", "angular", "redux", "webflux", "elixir", "serverless-framework", "streaming", "video"].includes(tagobj.name)) {
+    } else if (["selenium", "react", "spark", "spark-ml", "pyspark", "spring", "django", "nextjs", "mongoose", "nestjs", "angular", "redux", "webflux", "elixir", "serverless-framework", "streaming", "video"].includes(tagobj.name)) {
       frameworks.push(tagobj)
-    } else if (["kubernetes", "k8ssandra", "cql", "nosql", "vector", "astradb", "dse", "cassandra", "fastapi", "datastax", "keyspaces"].includes(tagobj.name)) {
+    } else if (["kubernetes", "k8ssandra", "docker", "stargate", "pulsar", "cql", "nosql", "vector", "astradb", "dse", "cassandra", "fastapi", "datastax", "keyspaces"].includes(tagobj.name)) {
       technology.push(tagobj)
-    } else if (["eddiehub", "jamstack", "netlify", "gitpod", "template", "google-cloud"].includes(tagobj.name)) {
+    } else if (["eddiehub", "jamstack", "httpie", "netlify", "gitpod", "template", "google-cloud"].includes(tagobj.name)) {
       integrations.push(tagobj)
-    } else if (["change data capture", "building-sample-apps", "ansible-playbooks", "machine learning", "graph", "ai", "game", "performance testing", "ds-bulk", "timeseries db", "killrvideo", "devops"].includes(tagobj.name)) {
+    } else if (["change data capture", "cms", "digital library", "gaming", "data-science", "data-engineering", "game development", "benchmark", "graphql federation", "building-sample-apps", "ansible-playbooks", "machine learning", "graph", "ai", "game", "performance testing", "ds-bulk", "timeseries db", "killrvideo", "devops"].includes(tagobj.name)) {
       usecases.push(tagobj)
     } else {
       other.push(tagobj)
