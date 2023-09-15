@@ -21,7 +21,7 @@ const LeftBar = (props) => {
     let tagobj = props.tagset[tag]
     if (["javascript", "csharp", "java", "nodejs", "python", "c#", "scala", "ios", "android"].includes(tagobj.name)) {
       languages.push(tagobj)
-    } else if (["doc api", "graphql api", "rest api", "gprc api", "devops-apis", "json-api"].includes(tagobj.name)) {
+    } else if (["doc api", "graphql api", "rest api", "grpc api", "devops-apis", "json-api"].includes(tagobj.name)) {
       apis.push(tagobj)
     } else if (["workshop", "apps", "starters", "dev", "tools", "examples"].includes(tagobj.name)) {
       secret.push(tagobj)
@@ -29,9 +29,9 @@ const LeftBar = (props) => {
       frameworks.push(tagobj)
     } else if (["kubernetes", "k8ssandra", "docker", "stargate", "pulsar", "cql", "nosql", "vector", "astradb", "dse", "cassandra", "fastapi", "datastax", "keyspaces"].includes(tagobj.name)) {
       technology.push(tagobj)
-    } else if (["eddiehub", "jamstack", "httpie", "netlify", "gitpod", "template", "google-cloud"].includes(tagobj.name)) {
+    } else if (["eddiehub", "jamstack", "pandas", "jupyter", "httpie", "netlify", "gitpod", "template", "google-cloud"].includes(tagobj.name)) {
       integrations.push(tagobj)
-    } else if (["change data capture", "cms", "digital library", "gaming", "data-science", "data-engineering", "game development", "benchmark", "graphql federation", "building-sample-apps", "ansible-playbooks", "machine learning", "graph", "ai", "game", "performance testing", "ds-bulk", "timeseries db", "killrvideo", "devops"].includes(tagobj.name)) {
+    } else if (["change data capture", "search", "todolist", "order management", "social media", "crypto application", "social network", "e-commerce", "real-time", "certification", "cms", "digital library", "gaming", "data modeling", "performance", "chat server", "data-science", "data-engineering", "game development", "benchmark", "graphql federation", "building-sample-apps", "ansible-playbooks", "machine learning", "graph", "ai", "game", "performance testing", "ds-bulk", "timeseries db", "killrvideo", "devops"].includes(tagobj.name)) {
       usecases.push(tagobj)
     } else {
       other.push(tagobj)
